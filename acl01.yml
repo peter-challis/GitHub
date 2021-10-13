@@ -1,0 +1,211 @@
+---
+- hosts: "{{ TESTHOST }}"
+  gather_facts: no
+  tasks:
+    - debug:
+        msg: "Creating clean test folder and user"
+    - name: Create Test user
+      win_user:
+        name: TestUser
+        password: TUP4ssw0rd
+        state: present
+        groups:
+          - Users
+    - name: Create Test folder structure
+      win_file:
+        path: c:\TestFldr\SubFldr\ChildFldr
+        state: directory
+    - name: Query ACL
+      win_shell: (get-acl c:\TestFldr\SubFldr).AccessToString
+      register: GetACL
+    - debug:
+        var: GetACL.stdout_lines
+
+    - debug:
+        msg: "Executing tests"
+    - name: Query ChildACL
+      win_shell: (get-acl c:\TestFldr\SubFldr\ChildFldr).AccessToString
+      register: GetChildACL
+    - debug:
+        var: GetChildACL.stdout_lines
+    - name: Remove standard user access
+      win_acl:
+        path: c:\TestFldr\SubFldr
+        user: Users
+        rights: ReadAndExecute
+        type: allow
+        state: absent
+      register: SetACL
+      ignore_errors: yes
+    - debug:
+        msg: "Either the result should be error: could not revoke this right, or the ACE should be changed accordingly"
+    - debug:
+        var: SetACL
+    - name: Query ACL1
+      win_shell: (get-acl c:\TestFldr\SubFldr).AccessToString
+      register: GetACL1
+    - debug:
+        var: GetACL1.stdout_lines
+    - name: add Read and Execute rights to Built-in Users
+      win_acl:
+        path: c:\TestFldr\SubFldr
+        user: Users
+        rights: ReadAndExecute
+        type: allow
+        state: present
+    - name: Query ACL2
+      win_shell: (get-acl c:\TestFldr\SubFldr).AccessToString
+      register: GetACL2
+    - debug:
+        var: GetACL2.stdout_lines
+    - name: add Write rights to Built-in Users group
+      win_acl:
+        path: c:\TestFldr\SubFldr
+        user: Users
+        rights: Write
+        type: allow
+        state: present
+    - name: Query ACL31
+      win_shell: (get-acl c:\TestFldr\SubFldr).AccessToString
+      register: GetACL31
+    - debug:
+        var: GetACL31.stdout_lines
+    - name: Query ChildACL31
+      win_shell: (get-acl c:\TestFldr\SubFldr\ChildFldr).AccessToString
+      register: GetChildACL31
+    - debug:
+        var: GetChildACL31.stdout_lines
+    - name: revoke the previously added Write rights from Built-in Users group
+      win_acl:
+        path: c:\TestFldr\SubFldr
+        user: Users
+        rights: Write
+        type: allow
+        state: absent
+      ignore_errors: yes
+    - debug:
+        msg: "The ACE should be changed accordingly"
+    - name: Query ACL32
+      win_shell: (get-acl c:\TestFldr\SubFldr).AccessToString
+      register: GetACL32
+    - debug:
+        var: GetACL32.stdout_lines
+    - name: add Read and Execute rights to TestUser
+      win_acl:
+        path: c:\TestFldr\SubFldr
+        user: TestUser
+        rights: ReadAndExecute
+        type: allow
+        state: present
+    - name: Query ACL4
+      win_shell: (get-acl c:\TestFldr\SubFldr).AccessToString
+      register: GetACL4
+    - debug:
+        var: GetACL4.stdout_lines
+    - name: Query ChildACL4
+      win_shell: (get-acl c:\TestFldr\SubFldr\ChildFldr).AccessToString
+      register: GetChildACL4
+    - debug:
+        var: GetChildACL4.stdout_lines
+    - name: add Modify rights to TestUser
+      win_acl:
+        path: c:\TestFldr\SubFldr
+        user: TestUser
+        rights: Modify
+        type: allow
+        state: present
+    - name: Query ACL41
+      win_shell: (get-acl c:\TestFldr\SubFldr).AccessToString
+      register: GetACL41
+    - debug:
+        var: GetACL41.stdout_lines
+    - name: Query ChildACL41
+      win_shell: (get-acl c:\TestFldr\SubFldr\ChildFldr).AccessToString
+      register: GetChildACL41
+    - debug:
+        var: GetChildACL41.stdout_lines
+    - name: revoke Modify rights from TestUser
+      win_acl:
+        path: c:\TestFldr\SubFldr
+        user: TestUser
+        rights: Modify
+        type: allow
+        state: absent
+    - name: Query ACL42
+      win_shell: (get-acl c:\TestFldr\SubFldr).AccessToString
+      register: GetACL42
+    - debug:
+        var: GetACL42.stdout_lines
+    - name: restore the expected state
+      win_acl:
+        path: c:\TestFldr\SubFldr
+        user: TestUser
+        rights: ReadAndExecute
+        type: allow
+        state: present
+    - name: Query ACL43
+      win_shell: (get-acl c:\TestFldr\SubFldr).AccessToString
+      register: GetACL43
+    - debug:
+        var: GetACL43.stdout_lines
+    - name: add Write rights to TestUser
+      win_acl:
+        path: c:\TestFldr\SubFldr
+        user: TestUser
+        rights: Write
+        type: allow
+        state: present
+    - name: Query ACL44
+      win_shell: (get-acl c:\TestFldr\SubFldr).AccessToString
+      register: GetACL44
+    - debug:
+        var: GetACL44.stdout_lines
+    - name: revoke Write rights from TestUser
+      win_acl:
+        path: c:\TestFldr\SubFldr
+        user: TestUser
+        rights: Write
+        type: allow
+        state: absent
+    - name: Query ACL45
+      win_shell: (get-acl c:\TestFldr\SubFldr).AccessToString
+      register: GetACL45
+    - debug:
+        var: GetACL45.stdout_lines
+    - name: Reset ACL
+      win_acl:
+        path: c:\TestFldr\SubFldr
+        state: reset
+      register: ReSetACL
+      ignore_errors: yes
+    - debug:
+        var: ReSetACL
+    - name: Query ACL5
+      win_shell: (get-acl c:\TestFldr\SubFldr).AccessToString
+      register: GetACL5
+    - debug:
+        var: GetACL5.stdout_lines
+    - name: Reset ACL on root (M:\)
+      win_acl:
+        path: m:\
+        state: reset
+      register: ReSetACL
+      ignore_errors: yes
+    - debug:
+        var: ReSetACL
+    - name: Query ACL6
+      win_shell: (get-acl c:\TestFldr\SubFldr).AccessToString
+      register: GetACL6
+    - debug:
+        var: GetACL6.stdout_lines
+
+    - debug:
+        msg: "Performing cleanup"
+    - name: remove Test folder
+      win_file:
+        path: c:\TestFldr\SubFldr
+        state: absent
+    - name: remove Test user
+      win_user:
+        name: TestUser
+        state: absent
