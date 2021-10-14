@@ -1,5 +1,5 @@
---
-- host: centos
+---
+- hosts: centos
   gather_facts: no
   tasks:
     -  name: add cache dir
