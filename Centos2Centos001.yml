@@ -1,4 +1,4 @@
 ---
-- hosts: guest
+- hosts: master
   gather_facts: no
   become: true
