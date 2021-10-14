@@ -1,4 +1,11 @@
-[centos]
+[master]
+192.168.0.100
+
+[master:vars]
+ansible_ssh_pass = vagrant
+ansible_ssh_user = vagrant
+
+[guest]
 192.168.0.99
 
 [centos:vars]

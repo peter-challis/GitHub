@@ -1,3 +1,3 @@
 ---
-- hosts: centos
+- hosts: guest
   gather_facts: no
