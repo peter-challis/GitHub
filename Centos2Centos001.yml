@@ -1,3 +1,4 @@
 ---
 - hosts: guest
   gather_facts: no
+  become: true
