@@ -1,4 +1,4 @@
 ---
-- hosts: master
-  gather_facts: no
+- name: Install nginx
+  hosts: guest
   become: true
