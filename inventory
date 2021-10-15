@@ -1,14 +1,21 @@
-[master]
-192.168.0.100
+[control]
+192.168.56.200
 
-[master:vars]
+[control:vars]
 ansible_ssh_pass = vagrant
 ansible_ssh_user = vagrant
 
-[centos]
+[node1]
 192.168.0.99
 
-[centos:vars]
+[node1:vars]
+ansible_ssh_pass = vagrant
+ansible_ssh_user = vagrant
+
+[node2]
+192.168.0.99
+
+[node2:vars]
 ansible_ssh_pass = vagrant
 ansible_ssh_user = vagrant
 
