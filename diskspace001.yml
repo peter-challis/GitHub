@@ -1,6 +1,6 @@
 ---
 - name: Check Disk Space Usage
-  hosts: control
+  hosts: windows
   tasks:
           - name: Disk usage from command module
             command: df -h
