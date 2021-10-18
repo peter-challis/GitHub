@@ -1,25 +1,27 @@
 ---
 - name: Check Disk Space Usage
   hosts: windows
-  vars_files: vault.yml
-  become: yes
-  become_method: sudo
-  gather_facts: yes
-  tasks:
-     - name: Collect only facts about hardware
-       setup:
-         gather_subset:
-           - 'hardware'
+  community.windows.win_disk_facts:
 
-     - name: Test for available disk space
-       setup: filter=ansible_mounts
+  - name: Output first disk size
+    debug:
+      var: ansible_facts.disks[0].size
 
-     - name: Ensure that free space on the tested volume is greater than 15%
-       assert:
-         that:
-           - mount.size_available > mount.size_total|float * 0.05
-         msg: Disk space has reached 95% threshold
-       vars:
-         mount: "{{ ansible_mounts | selectattr('mount','equalto',item.mount) | list | first }}"
-       with_items:
-         - "{{ ansible_mounts }}"
+  - name: Convert first system disk into various formats
+    debug:
+      msg: '{{ disksize_gib }} vs {{ disksize_gib_human }}'
+    vars:
+      # Get first system disk
+      disk: '{{ ansible_facts.disks|selectattr("system_disk")|first }}'
+
+      # Show disk size in Gibibytes
+      disksize_gib_human: '{{ disk.size|filesizeformat(true) }}'   # returns "223.6 GiB" (human readable)
+      disksize_gib: '{{ (disk.size/1024|pow(3))|round|int }} GiB'  # returns "224 GiB" (value in GiB)
+
+      # Show disk size in Gigabytes
+      disksize_gb_human: '{{ disk.size|filesizeformat }}'        # returns "240.1 GB" (human readable)
+      disksize_gb: '{{ (disk.size/1000|pow(3))|round|int }} GB'  # returns "240 GB" (value in GB)
+
+  - name: Output second disk serial number
+    debug:
+      var: ansible_facts.disks[1].serial_number
