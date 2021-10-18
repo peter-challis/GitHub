@@ -7,8 +7,8 @@
 [node2]
 192.168.56.202
 
-[wintest]
-192.168.0.160
+[windows]
+192.168.56.108
 
 [wintest:vars]
 ansible_connection=winrm
