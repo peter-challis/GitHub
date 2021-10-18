@@ -1,6 +1,6 @@
 ---
 - name: Check Disk Space Usage
-  hosts: windows
+  hosts: node1
   tasks:
           - name: Disk usage from command module
             command: df -h
