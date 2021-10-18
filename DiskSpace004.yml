@@ -1,0 +1,50 @@
+---
+- hosts: windows
+  gather_facts: false
+  vars:
+     DiskThreshold: 5
+
+  tasks:
+#
+#   code to copy FREESPACE.PS1 to C:\VagrantFiles\GitHub on server
+#
+  - name: run PS_Script
+    ansible.windows.win_shell: C:\VagrantFiles\GitHub\FreeSpace.ps1
+
+  - name: copy disk space information from file
+    ansible.windows.win_shell:
+      Select-String -Path C:\VagrantFiles\GitHub\FreeSpace.txt -pattern "@{FreeSpace="
+    register: freespace
+
+  - name: read file to get free disk space
+    set_fact: freediskspace={{ freespace.stdout_lines }}
+
+  - name: trim file to get free disk space value
+    set_fact: data1={{ freediskspace | regex_replace('.*=') | regex_replace ("'.*") }}
+
+  - name: check if disk space above threshold
+    set_fact:
+     DiskSpace:
+       "{{ (DiskThreshold | int) >= (data1 | int) }}"
+
+  - name: Get server name
+    ansible.windows.win_command: powershell.exe -
+    args:
+      stdin: hostname
+    register: server_name
+
+  - name: Disk Space below threshold server Information
+    debug:
+      msg:
+        - "***********************************************************"
+        - "{{ server_name.stdout_lines[0] }} has only {{ data1 }}GB free on the C Drive"
+        - "Free up some Space on the C Drive before patching commences"
+        - "***********************************************************"
+    when: DiskSpace is true
+
+  - name: Disk Space below threshold server Information
+    debug:
+      msg:
+        - "{{ server_name.stdout_lines[0] }} has {{ data1 }}GB free on the C Drive"
+        - "Patching can commence when the server is scheduled to be updated"
+    when: DiskSpace is false
