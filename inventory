@@ -10,7 +10,7 @@
 [windows]
 192.168.56.108
 
-[wintest:vars]
+[windows:vars]
 ansible_connection=winrm
 ansible_user=Administrator
 ansible_password=Password123
