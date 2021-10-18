@@ -9,11 +9,11 @@
 #   code to copy FREESPACE.PS1 to C:\VagrantFiles\GitHub on server
 #
   - name: run PS_Script
-    win_shell: C:\VagrantFiles\GitHub\FreeSpace.ps1
+    win_shell: C:\working\FreeSpace.ps1
 
   - name: copy disk space information from file
     win_shell:
-      Select-String -Path C:\VagrantFiles\GitHub\FreeSpace.txt -pattern "@{FreeSpace="
+      Select-String -Path C:\working\FreeSpace.txt -pattern "@{FreeSpace="
     register: freespace
 
   - name: read file to get free disk space
