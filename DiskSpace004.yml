@@ -9,10 +9,10 @@
 #   code to copy FREESPACE.PS1 to C:\VagrantFiles\GitHub on server
 #
   - name: run PS_Script
-    ansible.windows.win_shell: C:\VagrantFiles\GitHub\FreeSpace.ps1
+    win_shell: C:\VagrantFiles\GitHub\FreeSpace.ps1
 
   - name: copy disk space information from file
-    ansible.windows.win_shell:
+    win_shell:
       Select-String -Path C:\VagrantFiles\GitHub\FreeSpace.txt -pattern "@{FreeSpace="
     register: freespace
 
@@ -28,7 +28,7 @@
        "{{ (DiskThreshold | int) >= (data1 | int) }}"
 
   - name: Get server name
-    ansible.windows.win_command: powershell.exe -
+    win_command: powershell.exe -
     args:
       stdin: hostname
     register: server_name
@@ -40,11 +40,11 @@
         - "{{ server_name.stdout_lines[0] }} has only {{ data1 }}GB free on the C Drive"
         - "Free up some Space on the C Drive before patching commences"
         - "***********************************************************"
-    when: DiskSpace is true
+    when: DiskSpace == true
 
   - name: Disk Space below threshold server Information
     debug:
       msg:
         - "{{ server_name.stdout_lines[0] }} has {{ data1 }}GB free on the C Drive"
         - "Patching can commence when the server is scheduled to be updated"
-    when: DiskSpace is false
+    when: DiskSpace == false
