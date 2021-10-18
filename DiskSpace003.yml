@@ -10,9 +10,9 @@
      debug:
        var: ansible_facts.disk[0].size
 
-#   - name: convert disk into various formats
-#     debug:
-#       msg: "{{ free }} vs {{ freedisk }} vs {{ freedisk }} "
+   - name: convert disk into various formats
+     debug:
+       msg: "{{ free }} vs {{ freedisk }} vs {{ freedisk }} "
      vars:
        disk: "{{ ansible_facts.disks|selectattr('system_disk')|first }}"
        disksize_gib_human: "{{ disk.size|filesizeformat(true) }}"
