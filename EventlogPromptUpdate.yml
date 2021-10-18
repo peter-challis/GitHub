@@ -1,5 +1,5 @@
 ---
-- hosts: host-win
+- hosts: windows
   gather_facts: false
 
   vars_prompt:

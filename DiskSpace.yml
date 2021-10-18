@@ -23,7 +23,3 @@
       msg: "Disk usage {{ disk_usage_ratio_s }} exceeds {{ disk_limit_ratio_s }}"
     tags: disk
     any_errors_fatal: true
-
-  - name: indicate disks okay to statuscake
-    local_action: command /usr/bin/wget 'https://push.statuscake.com/?PK=abcdefghi&TestID=123456&time=0'
-    run_once: true
