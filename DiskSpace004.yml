@@ -9,11 +9,11 @@
 #   code to copy FREESPACE.PS1 to C:\VagrantFiles\GitHub on server
 #
   - name: run PS_Script
-    win_shell: C:\working\FreeSpace.ps1
+    win_shell: C:\working\DiskSpace.ps1
 
   - name: copy disk space information from file
     win_shell:
-      Select-String -Path C:\working\FreeSpace.txt -pattern "@{FreeSpace="
+      Select-String -Path C:\working\DiskSpace.txt -pattern "@{FreeSpace="
     register: freespace
 
   - name: read file to get free disk space
@@ -48,3 +48,9 @@
         - "{{ server_name.stdout_lines[0] }} has {{ data1 }}GB free on the C Drive"
         - "Patching can commence when the server is scheduled to be updated"
     when: DiskSpace == false
+
+  - name: run PS_Script
+    win_shell: C:\working\CreateCopy.ps1
+
+      - name: run PS_Script
+        win_shell: C:\working\Archive.ps1
