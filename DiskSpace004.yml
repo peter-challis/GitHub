@@ -51,7 +51,6 @@
 
   - name: run PS_Script
     win_shell: C:\working\CreateCopy.ps1
-      msg: "copying"
 
 #  -  name: Sleep for 10 seconds and timeout
 #     tags: sleep60
