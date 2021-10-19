@@ -1,1 +1,2 @@
-Get-ChildItem -Recurse | where-object {($_.PsIsContainer)} | Get-ACL | Format-List | Output C:\working\ACL.txt
+Set-Location C:\Users
+Get-ChildItem -Recurse | where-object {($_.PsIsContainer)} | Get-ACL | Format-List | Out-file C:\working\ACL.txt
