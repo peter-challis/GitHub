@@ -8,10 +8,10 @@
   - name: running diskspace.ps1 on remote windows server
     win_shell: C:\working\DiskSpace.ps1
 
-#  - name: copy disk space information from file
-#    win_shell:
-#      Select-String -Path C:\working\DiskSpace.txt -pattern "@{FreeSpace="
-#    register: freespace
+  - name: copy disk space information from file
+    win_shell:
+      Select-String -Path C:\working\DiskSpace.txt -pattern "@{FreeSpace="
+    register: freespace
 #
 #  - name: read file to get free disk space
 #    set_fact: freediskspace={{ freespace.stdout_lines }}
