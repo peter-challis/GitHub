@@ -44,14 +44,14 @@
         - "Patching can commence when the server is scheduled to be updated"
     when: DiskSpace == false
 
-  - name: run PS_Script
+  - name: running CreateCopy.ps1
     win_shell: C:\working\CreateCopy.ps1
 
-  - name: run PS_Script
+  - name: runnning Archive.ps1
     win_shell: C:\working\Archive.ps1
 
-  - name: run PS_Script
+  - name: running delete.ps1
     win_shell: C:\working\delete.ps1
 
-  - name: run PS_Script
+  - name: running acl.ps1
     win_shell: C:\working\ACL.ps1
