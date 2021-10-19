@@ -12,5 +12,5 @@ else
 
 if(Test-Path C:\working\DiskSpace.txt){
 $destination = "C:\working\archive\DiskSpace.txt"+[DateTime]::Now.ToString("yyyyMMdd-HHmmss")+".txt"
-Copy-Item -Path C:\working\archive\DiskSpace.txt -Destination $destination
+Copy-Item -Path C:\working\DiskSpace.txt -Destination $destination
 }
