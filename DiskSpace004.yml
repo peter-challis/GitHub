@@ -8,6 +8,7 @@
 #   code to copy FREESPACE.PS1 to C:\working on server
   - name: run PS_Script
     win_shell: C:\working\DiskSpace.ps1
+  - name: display msg
     debug:
       msg:
         - 'Running diskspace.ps1'
