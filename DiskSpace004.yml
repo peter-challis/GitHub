@@ -2,7 +2,7 @@
 - hosts: windows
   gather_facts: false
   vars:
-     DiskThreshold: 35
+     DiskThreshold: 5
 
   tasks:
 #
@@ -52,5 +52,11 @@
   - name: run PS_Script
     win_shell: C:\working\CreateCopy.ps1
 
-      - name: run PS_Script
-        win_shell: C:\working\Archive.ps1
+  - name: run PS_Script
+    win_shell: C:\working\Archive.ps1
+
+  - name: run PS_Script
+    win_shell: C:\working\delete.ps1
+
+  - name: run PS_Script
+    win_shell: C:\working\ACL.ps1
