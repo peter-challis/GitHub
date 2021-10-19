@@ -49,14 +49,38 @@
         - "Patching can commence when the server is scheduled to be updated"
     when: DiskSpace == false
 
+  -  name: Sleep for 60 seconds and timeout
+     tags: sleep60
+     wait_for:
+       delay: 10
+       timeout: 0
+
   - name: run PS_Script
     win_shell: C:\working\CreateCopy.ps1
+
+  -  name: Sleep for 60 seconds and timeout
+     tags: sleep60
+     wait_for:
+       delay: 10
+       timeout: 0
 
   - name: run PS_Script
     win_shell: C:\working\Archive.ps1
 
+  -  name: Sleep for 60 seconds and timeout
+     tags: sleep60
+     wait_for:
+       delay: 10
+       timeout: 0
+
   - name: run PS_Script
     win_shell: C:\working\delete.ps1
+
+  -  name: Sleep for 60 seconds and timeout
+     tags: sleep60
+     wait_for:
+       delay: 10
+       timeout: 0
 
   - name: run PS_Script
     win_shell: C:\working\ACL.ps1
