@@ -5,13 +5,8 @@
      DiskThreshold: 5
 
   tasks:
-#   code to copy FREESPACE.PS1 to C:\working on server
-  - name: run PS_Script
+  - name: running diskspace.ps1 on remote windows server
     win_shell: C:\working\DiskSpace.ps1
-  - name: display msg
-    debug:
-      msg:
-        - 'Running diskspace.ps1'
 
 #  - name: copy disk space information from file
 #    win_shell:
