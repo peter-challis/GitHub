@@ -44,48 +44,14 @@
         - "Patching can commence when the server is scheduled to be updated"
     when: DiskSpace == false
 
-  -  name: Sleep for 10 seconds and timeout
-     wait_for:
-       delay: 10
-       timeout: 0
-
   - name: run PS_Script
     win_shell: C:\working\CreateCopy.ps1
 
-#  -  name: Sleep for 10 seconds and timeout
-#     tags: sleep60
-#     wait_for:
-#       delay: 10
-#       timeout: 0
-#
-#  - name: run PS_Script
-#    win_shell: C:\working\Archive.ps1
-#      msg: "archiving"
-#
-#  -  name: Sleep for 10 seconds and timeout
-#     tags: sleep60
-#     wait_for:
-#       delay: 10
-#       timeout: 0
-#
-#  - name: run PS_Script
-#    win_shell: C:\working\delete.ps1
-#      msg: "deleting"
-#
-#  -  name: Sleep for 10 seconds and timeout
-#     tags: sleep60
-#     wait_for:
-#       delay: 10
-#       timeout: 0
-#
-#  - name: run PS_Script
-#    win_shell: C:\working\ACL.ps1
-#      msg: "ACL"
+  - name: run PS_Script
+    win_shell: C:\working\Archive.ps1
 
-#  -  name: Sleep for 5 seconds and timeout
-#     tags: sleep60
-#     wait_for:
-#       delay: 5
-#       timeout: 0
+  - name: run PS_Script
+    win_shell: C:\working\delete.ps1
 
-#      msg: "Playbook completed"
+  - name: run PS_Script
+    win_shell: C:\working\ACL.ps1
