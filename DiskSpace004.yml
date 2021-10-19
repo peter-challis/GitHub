@@ -50,10 +50,9 @@
     when: DiskSpace == false
 
 #  -  name: Sleep for 60 seconds and timeout
-     tags: sleep60
-     wait_for:
-       delay: 10
-       timeout: 0
+#     wait_for:
+#       delay: 10
+#       timeout: 0
 #
 #  - name: run PS_Script
 #    win_shell: C:\working\CreateCopy.ps1
