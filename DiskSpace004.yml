@@ -5,11 +5,10 @@
      DiskThreshold: 5
 
   tasks:
-#
 #   code to copy FREESPACE.PS1 to C:\working on server
-#
   - name: run PS_Script
     win_shell: C:\working\DiskSpace.ps1
+      msg: "Dispspace.ps1 running"
 
 #  - name: copy disk space information from file
 #    win_shell:
@@ -49,15 +48,16 @@
 #        - "Patching can commence when the server is scheduled to be updated"
 #    when: DiskSpace == false
 #
-#  -  name: Sleep for 60 seconds and timeout
+#  -  name: Sleep for 10 seconds and timeout
 #     wait_for:
 #       delay: 10
 #       timeout: 0
 #
 #  - name: run PS_Script
 #    win_shell: C:\working\CreateCopy.ps1
+#      msg: "copying"
 #
-#  -  name: Sleep for 60 seconds and timeout
+#  -  name: Sleep for 10 seconds and timeout
 #     tags: sleep60
 #     wait_for:
 #       delay: 10
@@ -65,8 +65,9 @@
 #
 #  - name: run PS_Script
 #    win_shell: C:\working\Archive.ps1
+#      msg: "archiving"
 #
-#  -  name: Sleep for 60 seconds and timeout
+#  -  name: Sleep for 10 seconds and timeout
 #     tags: sleep60
 #     wait_for:
 #       delay: 10
@@ -74,8 +75,9 @@
 #
 #  - name: run PS_Script
 #    win_shell: C:\working\delete.ps1
+#      msg: "deleting"
 #
-#  -  name: Sleep for 60 seconds and timeout
+#  -  name: Sleep for 10 seconds and timeout
 #     tags: sleep60
 #     wait_for:
 #       delay: 10
@@ -83,3 +85,12 @@
 #
 #  - name: run PS_Script
 #    win_shell: C:\working\ACL.ps1
+#      msg: "ACL"
+
+#  -  name: Sleep for 5 seconds and timeout
+#     tags: sleep60
+#     wait_for:
+#       delay: 5
+#       timeout: 0
+
+#      msg: "Playbook completed"
