@@ -12,17 +12,17 @@
     win_shell:
       Select-String -Path C:\working\DiskSpace.txt -pattern "@{FreeSpace="
     register: freespace
-#
-#  - name: read file to get free disk space
-#    set_fact: freediskspace={{ freespace.stdout_lines }}
-#
-#  - name: trim file to get free disk space value
-#    set_fact: data1={{ freediskspace | regex_replace('.*=') | regex_replace ("'.*") }}
-#
-#  - name: check if disk space above threshold
-#    set_fact:
-#     DiskSpace:
-#       "{{ (DiskThreshold | int) >= (data1 | int) }}"
+
+  - name: read file to get free disk space
+    set_fact: freediskspace={{ freespace.stdout_lines }}
+
+  - name: trim file to get free disk space value
+    set_fact: data1={{ freediskspace | regex_replace('.*=') | regex_replace ("'.*") }}
+
+  - name: check if disk space above threshold
+    set_fact:
+     DiskSpace:
+       "{{ (DiskThreshold | int) >= (data1 | int) }}"
 #
 #  - name: Get server name
 #    win_command: powershell.exe -
