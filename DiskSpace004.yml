@@ -49,8 +49,14 @@
         - "Patching can commence when the server is scheduled to be updated"
     when: DiskSpace == false
 
+    debug:
+      msg: "creating copy of log file"
+
   - name: run PS_Script
     win_shell: C:\working\CreateCopy.ps1
+
+    debug:
+      msg: "archiving"
 
   - name: run PS_Script
     win_shell: C:\working\Archive.ps1
