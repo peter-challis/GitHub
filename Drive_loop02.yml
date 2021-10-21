@@ -1,7 +1,7 @@
 ---
   - name: read c:\working\disks.txt to get the drive letter to check
     win_shell:
-      Select-String -Path C:\working\disks.txt -pattern "Disk="
+      Select-String -Path C:\working\FixedPassed.txt -pattern "Disk="
     register: disk_letter
 
   - name: set the fact for the service
