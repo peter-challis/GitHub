@@ -1,0 +1,18 @@
+---
+  - name: read c:\working\disks.txt to get the drive letter to check
+    win_shell:
+      Select-String -Path C:\working\disks.txt -pattern "Disk="
+    register: disk_letter
+
+  - name: set the fact for the service
+    set_fact: disk={{ disk_letter.stdout_lines[item] }}
+
+  - name: remove everything apart from service name
+    set_fact: disk_name={{ disk | regex_replace('.*=') | regex_replace ("'.*") }}
+
+  - name: Check Service Status
+    debug:
+      msg: "checking ACL against the {{ disk_name }} drive"
+
+  - name: run PS_Script
+    win_shell: C:\working\ACL.ps1 {{ disk_name }}
