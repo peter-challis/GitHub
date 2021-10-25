@@ -1,14 +1,14 @@
 [control]
-192.168.56.200 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+192.168.56.200
 
 [node1]
-192.168.56.201 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+192.168.56.201
 
 [node2]
-192.168.56.202 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+192.168.56.202
 
 [node3]
-192.168.56.203 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+192.168.56.203
 
 [windows]
 192.168.56.108
