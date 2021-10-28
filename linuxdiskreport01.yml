@@ -8,5 +8,5 @@
       register: tmp_freespace
 
     - fail:
-        msg: /tmp does not have the minimum space required to continue (3Gb requested).
-      when: tmp_freespace.stdout|float is lt 3000000
+        msg: /tmp does not have the minimum space required to continue
+      when: tmp_freespace.stdout|float is lt 1000
