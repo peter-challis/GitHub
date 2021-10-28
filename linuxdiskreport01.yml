@@ -3,10 +3,12 @@
   gather_facts: no
   tasks:
 
-    - name: Check /tmp freespace
-      shell: df /tmp --output\=avail | tail -1
-      register: tmp_freespace
+  - name: Get size of /run
+    shell: "df --block-size 1m /run --output=size | tail -1"
+    register: shell_df_result
 
-    - fail:
-        msg: /tmp does not have the minimum space required to continue
-      when: tmp_freespace.stdout|float is lt 1000
+  - name: Set facts
+    set_fact:
+      run_tmpfs_size_mb: "{{ shell_df_result.stdout | int }}"
+
+  - debug: var=run_tmpfs_size_mb
