@@ -1,8 +1,9 @@
 ---
-- hosts: all
+- name: Lets look at some disks
+  hosts: node1
+  become: false
+  gather_facts: false
   tasks:
-    gather_facts: false
-
   - name: Collect only facts about hardware
     setup:
       gather_subset:
