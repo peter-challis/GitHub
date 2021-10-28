@@ -11,7 +11,7 @@
       ignore_errors: yes
       register: disk_free
 
-    - name: Fail when disk space needs attention
-      fail:
-         msg: 'Disk space needs attention.'
-      when: disk_free|failed
+#    - name: Fail when disk space needs attention
+#      fail:
+#         msg: 'Disk space needs attention.'
+#      when: disk_free|failed
