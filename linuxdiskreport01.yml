@@ -1,14 +1,7 @@
 ---
 - hosts: node1
-  gather_facts: no
   tasks:
-
-  - name: Get size of /run
-    shell: "df --block-size 1m /run --output=size | tail -1"
-    register: shell_df_result
-
-  - name: Set facts
-    set_fact:
-      run_tmpfs_size_mb: "{{ shell_df_result.stdout | int }}"
-
-  - debug: var=run_tmpfs_size_mb
+    - name:
+      command: df -h
+      register: storage
+    - debug: var=storage.stdout_lines
