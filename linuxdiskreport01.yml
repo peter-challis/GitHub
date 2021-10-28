@@ -1,7 +1,17 @@
 ---
-- hosts: node1
+- hosts: all
   tasks:
-    - name:
-      command: df -h
-      register: storage
-    - debug: var=storage.stdout_lines
+
+  - name: Lets look at some disks
+    hosts: localhost
+    become: false
+    gather_facts: false
+    tasks:
+    - name: Collect only facts about hardware
+      setup:
+        gather_subset:
+        - hardware
+
+    - name: Output disks
+      debug:
+        var: hostvars[inventory_hostname].ansible_devices.keys() | map('regex_search', 'sd.*') | select('string') | list
