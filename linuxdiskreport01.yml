@@ -7,7 +7,7 @@
       assert:
         that:
             - item.mount != '/' or {{ item.mount == '/' and item.size_available > (item.size_total|float * 0.4) }}
-      with_items: '{{ ansible_mounts }}'
+      with_items: '{ ansible_mounts }'
       ignore_errors: yes
       register: disk_free
 
