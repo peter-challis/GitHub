@@ -6,5 +6,5 @@
     - name: cleanup logs free disk space below 20%
       sudo: yes
       command: find /var -name "*.log" \( \( -size +50M -mtime +7 \) -o -mtime +30 \) -exec truncate {} --size 0 \;
-      when: "item.mount == '/var' and ( item.size_available < item.size_total * 0.2 )"
-      with_items: ansible_mounts
+#      when: "item.mount == '/var' and ( item.size_available < item.size_total * 0.2 )"
+#      with_items: ansible_mounts
