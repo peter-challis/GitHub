@@ -14,7 +14,7 @@
     - name: cleanup logs, free disk space below 20%
 #      command: find /var -name "*.log" \( \( -size +50M -mtime +7 \) -o -mtime +30 \) -exec truncate {} --size 0 \;
       command: find /var/test1 -name "*.log" \( -size +50M -mtime +7 \) -o -exec truncate {} --size 0 \;
-      when: "item.mount == '/var' and ( item.size_available < item.size_total * 0.8 )"
+      when: "item.mount == '/var' and ( item.size_available > item.size_total * 0.8 )"
       with_items: '{{ ansible_mounts }}'
 
 #    - name: writeout var
