@@ -11,13 +11,12 @@
       ignore_errors: yes
       register: disk_free
 
-    - name: cleanup logs, free disk space below 20%
-#      command: find /var -name "*.log" \( \( -size +50M -mtime +7 \) -o -mtime +30 \) -exec truncate {} --size 0 \;
-      command: find /var/test1 -name "*.log" \( -size +50M -mtime +7 \) -o -exec truncate {} --size 0 \;
+    - name: cleanup logs
+      command: find /var -name "*.log" \( -size +50M -mtime +7 \) -o -exec truncate {} --size 100 \;
       when: "item.mount != '/var' and ( item.size_available > item.size_total * 0.8 )"
       with_items: '{{ ansible_mounts }}'
 
-#    - name: writeout var
+#    - name: whats in ansible_mounts???
 #      debug:
 #        msg: "ansible_mounts={{ ansible_mounts }}"
 
@@ -25,3 +24,10 @@
 #      fail:
 #         msg: 'Disk space needs attention.'
 #      when: disk_free|failed
+
+#- name: cleanup logs, free disk space below 20%
+#  command: find /var -name "*.log" \( \( -size +50M -mtime +7 \) -o -mtime +30 \) -exec truncate {} --size 0 \;
+#  when: "item.mount == '/var' and ( item.size_available < item.size_total * 0.2 )"
+#  with_items: ansible_mounts
+
+# https://stackoverflow.com/questions/26981907/using-ansible-to-manage-disk-space
