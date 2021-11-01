@@ -16,9 +16,10 @@
       command: find /var/test1 -name "*.log" \( -size +50M -mtime +7 \) -o -exec truncate {} --size 0 \;
       when: "item.mount == '/var' and ( item.size_available < item.size_total * 0.2 )"
       with_items: '{{ ansible_mounts }}'
+
     - name: writeout var
-      msg:
-        debug: "ansible_mounts={{ ansible_mounts }}"
+      debug: 
+        msg: "ansible_mounts={{ ansible_mounts }}"
 
 #    - name: Fail when disk space needs attention
 #      fail:
