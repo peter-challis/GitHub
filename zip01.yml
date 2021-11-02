@@ -12,13 +12,13 @@
 
   - name: create file
       file:
-        path: /home/ {{ item.path }}
+        path: /home/ {{ item }}
         state: touch
-      with_items: '{{ files_matched.files }}'
+      with_items: '{{ files_matched }}'
 
   - debug:
-      msg: "{{ files_matched.files }}"
-      
+      msg: "{{ files_matched }}"
+
 #  - archive:
 #      path: /home/test1/
 #      remove: True
