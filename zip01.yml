@@ -15,7 +15,7 @@
     file:
       path: /home/ {{ item.path }}
       state: touch
-#    with_items: '{{ files_matched.files }}'
+    with_items: '{{ files_matched.files }}'
 
 #  - debug:
 #      msg: "{{ files_matched.files }}"
