@@ -4,7 +4,7 @@
   tasks:
   - name: finds files
     find:
-      paths: /var
+      paths: /home
 #        age: 2d
 #        size: 1m
 #        age_stamp: 86400
