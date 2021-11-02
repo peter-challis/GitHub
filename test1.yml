@@ -1,9 +1,9 @@
 ---
-- name: Pre archive disk check
+- name: capacity
   hosts: node2
   tasks:
-    - name: Disk usage from command module
+    - name: Pre change disk check
       command: df -h
       register: space
-    - debug:
+    - debug: Pre change disk check
         var: space.stdout_lines
