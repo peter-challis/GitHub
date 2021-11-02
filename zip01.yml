@@ -10,11 +10,15 @@
 #      recurse: yes
     register: files_matched
 
-  - debug:
-      msg: "{{ files_matched.files }}"
+    - name: create file
+      file: path=/home/ {{ path }} state=files
+      with_items: '{{ files_matched }}'
+
+#  - debug:
+#      msg: "{{ files_matched.files }}"
 
 #  - archive:
-#      path: /var/test1/
+#      path: /home/test1/
 #      remove: True
 #      dest: /var/test1.zip
 #      format: zip
