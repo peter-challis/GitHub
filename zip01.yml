@@ -17,7 +17,7 @@
 #    with_items: '{{ files_matched.path }}'
 
   - debug:
-      msg: "{{ files_matched.files }}"
+      msg: "{{ files_matched.files.path }}"
 
 #  - archive:
 #      path: /home/test1/
