@@ -4,7 +4,7 @@
   tasks:
 
   - archive:
-      path: /var/test1
+      path: /var/test1/
 #      remove: True
-#      dest: /var
+      dest: /var/test1.zip
       format: zip
