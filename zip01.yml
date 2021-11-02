@@ -2,16 +2,19 @@
 - hosts: node2
   become: True
   tasks:
-    - name: find all files older than 10 days
+    - name: outputs all message*.log files to var
       find:
-        path: /var/*/
-        age: 10d
+        path: /var
+        age: 2d
+        size: 1m
+        age_stamp: 86400
+        patterns: message*.log, *.tmp
         recursive: yes
-      register: fileolderthan10
+      register: messagelog1day
 
-#    - name: whats in fileolderthan10
-#      debug:
-#        msg: "fileolderthan10={{ fileolderthan10 }}"
+    - name: lets take a look at messagelog1day
+      debug:
+        msg: "messagelog1day"
 
 #  - archive:
 #      path: /var/test1/
