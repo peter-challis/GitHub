@@ -20,8 +20,9 @@
     with_items: '{{ files_matched.files }}'
 
   - debug:
-      msg: "{{ files_matched.files }}"
-
+      msg: "{{ item.path }}"
+    with_items: '{{ files_matched.files }}'
+    
 #  - archive:
 #      path: /home/test1/
 #      remove: True
