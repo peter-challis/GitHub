@@ -5,15 +5,15 @@
   - name: finds files
     find:
       paths: /home
-#        age: 2d
-#        size: 1m
+#        age: 1d
+#        size: 10m
 #        age_stamp: 86400
       patterns: message*.log, *.tmp
 #        recursive: yes
-      register: messagelog1day
+    register: messagelog
 
-      debug:
-        msg: "{{ messagelog1day.files }}"
+    - debug:
+        msg: "{{ messagelog.files }}"
 
 #  - archive:
 #      path: /var/test1/
