@@ -9,9 +9,9 @@
         recursive: yes
       register: fileolderthan10
 
-    - name: whats in fileolderthan10
-      debug:
-        msg: "fileolderthan10={{ fileolderthan10 }}"
+#    - name: whats in fileolderthan10
+#      debug:
+#        msg: "fileolderthan10={{ fileolderthan10 }}"
 
 #  - archive:
 #      path: /var/test1/
