@@ -1,20 +1,19 @@
 ---
 - hosts: node2
-  become: True
-
-  - name: outputs all message*.log files to var
+#  become: True
+  tasks:
+  - name: finds files
     find:
-      path: /var
-      age: 2d
+      paths: /var
+#        age: 2d
 #        size: 1m
 #        age_stamp: 86400
-#        patterns: message*.log, *.tmp
+      patterns: message*.log, *.tmp
 #        recursive: yes
       register: messagelog1day
 
-#    - name: lets take a look at messagelog1day
-#      debug:
-#        msg: "messagelog1day"
+      debug:
+        msg: "{{ messagelog1day.files }}"
 
 #  - archive:
 #      path: /var/test1/
