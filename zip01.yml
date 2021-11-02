@@ -1,0 +1,10 @@
+---
+- hosts: node2
+  become: True
+  tasks:
+
+  - archive:
+      path: /var/test1
+      remove: True
+      dest: /var/archive/
+      format: zip
