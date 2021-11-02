@@ -12,9 +12,9 @@
         recursive: yes
       register: messagelog1day
 
-    - name: lets take a look at messagelog1day
-      debug:
-        msg: "messagelog1day"
+#    - name: lets take a look at messagelog1day
+#      debug:
+#        msg: "messagelog1day"
 
 #  - archive:
 #      path: /var/test1/
