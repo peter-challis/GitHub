@@ -8,7 +8,7 @@
 #        age: 1d
 #        size: 10m
 #        age_stamp: 86400
-      patterns: message*.log, *.tmp
+      patterns: "message*.log, *.tmp"
 #        recursive: yes
     register: messagelog
 
