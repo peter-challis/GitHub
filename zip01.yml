@@ -10,9 +10,9 @@
 #      recurse: yes
     register: files_matched
 
-    - name: create file
-      file: path=/home/ {{ path }} state=files
-      with_items: '{{ files_matched }}'
+  - name: create file
+    file: path=/home/ {{ item }} state=file
+    with_items: '{{ files_matched.path }}'
 
 #  - debug:
 #      msg: "{{ files_matched.files }}"
