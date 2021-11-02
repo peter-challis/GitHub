@@ -20,7 +20,7 @@
       paths: /home
       patterns: "message*.log, *.tmp"
       age: 86400
-      age_stamp: atime
+      age_stamp: mtime
       recursive: yes
     register: files_matched
 
