@@ -11,9 +11,7 @@
 #      patterns: "message*.log, *.tmp"
 ##        recursive: yes
 #    register: messagelog
-#
-#    - debug:
-#        msg: "{{ messagelog.files }}"
+
 ---
 - hosts: node2
   tasks:
@@ -21,6 +19,9 @@
     find:
       paths: /home
       patterns: "message*.log, *.tmp"
+#      age_stamp: 86400
+      age_stamp: 10
+      recursive: yes
     register: files_matched
 
   - debug:
