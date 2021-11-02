@@ -4,9 +4,9 @@
   - name: Ansible find file examples
     find:
       paths: /home
-      patterns: "*.log"
-      age: 24h
-      age_stamp: atime
+      patterns: "message*.log"
+#      age: 24h
+#      age_stamp: atime
 #      recurse: yes
     register: files_matched
 
