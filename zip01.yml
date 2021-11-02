@@ -2,14 +2,14 @@
 - hosts: node2
   become: True
   tasks:
-    - name: outputs all message*.log files to var
-      find:
-        path: /var
-        age: 2d
-        size: 1m
-        age_stamp: 86400
-        patterns: message*.log, *.tmp
-        recursive: yes
+  - name: outputs all message*.log files to var
+    find:
+      path: /var
+#        age: 2d
+#        size: 1m
+#        age_stamp: 86400
+#        patterns: message*.log, *.tmp
+#        recursive: yes
       register: messagelog1day
 
 #    - name: lets take a look at messagelog1day
