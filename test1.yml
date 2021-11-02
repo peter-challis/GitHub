@@ -5,7 +5,7 @@
     find:
       paths: /home
       patterns: "*.log"
-        register: files_matched
+    register: files_matched
 
   - debug:
       msg: "{{ files_matched.files }}"
