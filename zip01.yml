@@ -1,19 +1,30 @@
----
-- hosts: node2
+#---
+#- hosts: node2
 #  become: True
-  tasks:
-  - name: finds files
-    find:
-      paths: /home
+#  tasks:
+#  - name: finds files
+#    find:
+#      paths: /home
 #        age: 1d
 #        size: 10m
 #        age_stamp: 86400
+#      patterns: "message*.log, *.tmp"
+##        recursive: yes
+#    register: messagelog
+#
+#    - debug:
+#        msg: "{{ messagelog.files }}"
+---
+- hosts: node2
+  tasks:
+  - name: Ansible find file examples
+    find:
+      paths: /home
       patterns: "message*.log, *.tmp"
-#        recursive: yes
-    register: messagelog
+    register: files_matched
 
-    - debug:
-        msg: "{{ messagelog.files }}"
+  - debug:
+      msg: "{{ files_matched.files }}"
 
 #  - archive:
 #      path: /var/test1/
