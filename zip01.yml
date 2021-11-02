@@ -7,7 +7,7 @@
 #      patterns: "*.log, *.tmp"
       age: 24h
       age_stamp: atime
-      recursive: yes
+      recurse: yes
     register: files_matched
 
   - debug:
