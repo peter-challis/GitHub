@@ -5,6 +5,6 @@
 
   - archive:
       path: /var/test1
-      remove: True
-      dest: /var
+#      remove: True
+#      dest: /var
       format: zip
