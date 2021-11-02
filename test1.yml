@@ -6,5 +6,5 @@
       command: df -h
       register: space
     - debug:
-        msg: 'Pre capacity check'
         var: space.stdout_lines
+        msg: "{{ space.stdout_lines }}"
