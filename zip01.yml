@@ -13,18 +13,19 @@
 #      recurse: yes
     register: files_matched
 
-  - name: create file
-    file:
-      path: "{{ item.path }}"
-      state: touch
-    with_items: '{{ files_matched.files }}'
+#  - name: create file
+#    file:
+#      path: "{{ item.path }}"
+#      state: touch
+#    with_items: '{{ files_matched.files }}'
 
   - debug:
       msg: "{{ item.path }}"
     with_items: '{{ files_matched.files }}'
-    
-#  - archive:
-#      path: /home/test1/
+
+  - archive:
+      path: "{{ item.path }}"
 #      remove: True
-#      dest: /var/test1.zip
-#      format: zip
+#      dest: /var/test1gz
+      format: gz
+    with_items: '{{ files_matched.files }}'
