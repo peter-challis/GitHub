@@ -1,11 +1,11 @@
 ---
 - hosts: node2
   become: True
-  tasks:
+
   - name: outputs all message*.log files to var
     find:
       path: /var
-#        age: 2d
+      age: 2d
 #        size: 1m
 #        age_stamp: 86400
 #        patterns: message*.log, *.tmp
