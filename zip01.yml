@@ -1,17 +1,3 @@
-#---
-#- hosts: node2
-#  become: True
-#  tasks:
-#  - name: finds files
-#    find:
-#      paths: /home
-#        age: 1d
-#        size: 10m
-#        age_stamp: 86400
-#      patterns: "message*.log, *.tmp"
-##        recursive: yes
-#    register: messagelog
-
 ---
 - hosts: node2
   tasks:
@@ -19,7 +5,8 @@
     find:
       paths: /home
       patterns: "message*.log, *.tmp"
-      age: 24h
+#      age: 24h
+#      age_stamp: ctime
       recursive: yes
     register: files_matched
 
