@@ -5,5 +5,5 @@
     - name: Pre change disk check
       command: df -h
       register: space
-    - debug: Pre change disk check
+    - debug:
         var: space.stdout_lines
