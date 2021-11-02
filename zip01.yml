@@ -11,7 +11,9 @@
     register: files_matched
 
   - name: create file
-    file: path=/home/ {{ item }} state=file
+    file:
+      path: /home/ {{ item }}
+      state: touch
     with_items: '{{ files_matched.path }}'
 
 #  - debug:
