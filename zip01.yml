@@ -6,7 +6,7 @@
       paths: /home
       patterns: "*.log, *.tmp"
       age: 24h
-      age_stamp: ctime
+#      age_stamp: ctime
       recursive: yes
     register: files_matched
 
