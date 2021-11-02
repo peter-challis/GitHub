@@ -4,10 +4,13 @@
   become_user: root
   tasks:
 
+# remember to add pre + post capacity.  debug to screen and to eventlogs
+# ask for path or file, file name, inc ref and how many days old the file needs to be before deleting/archiving
+
   - name: Ansible find file examples
     find:
-      paths: /home
-      patterns: "message*.log"
+      paths: "{{in_path}}"
+      patterns: "{{in_pattern}}"
 #      age: 24h
 #      age_stamp: atime
 #      recurse: yes

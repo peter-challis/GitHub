@@ -12,7 +12,7 @@
       register: disk_free
 
     - name: cleanup logs
-      command: find /var -name "*.log" \( -size +50M -mtime +7 \) -o -exec truncate {} --size 100 \;
+      command: find /var -name "*.log" \( -size +50M -mtime +7 \) -o -exec truncate {} --size 1000 \;
       when: "item.mount != '/var' and ( item.size_available > item.size_total * 0.8 )"
       with_items: '{{ ansible_mounts }}'
 
