@@ -1,9 +1,10 @@
 ---
-- name: Check Disk Space Usage
+- name: Pre archive disk check
   hosts: node2
   tasks:
     - name: Disk usage from command module
       command: df -h
       register: space
     - debug:
+        msg: "Pre capacity check"
         var: space.stdout_lines
