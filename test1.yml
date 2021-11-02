@@ -7,4 +7,3 @@
       register: space
     - debug:
         var: space.stdout_lines
-        msg: "{{ space.stdout_lines }}"
