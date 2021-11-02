@@ -1,0 +1,11 @@
+---
+- hosts: node2
+  tasks:
+  - name: Ansible find file examples
+    find:
+      paths: /home
+      patterns: "*.log"
+      register: files_matched
+
+  - debug:
+      msg: "{{ files_matched.files }}"
