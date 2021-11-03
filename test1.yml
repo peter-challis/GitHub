@@ -13,5 +13,4 @@
 
     - copy:
         content: "{{ space.stdout_lines }}"
-        dest: "/diskcap.txt"
-        
+        dest: "/var/diskcap.txt"
