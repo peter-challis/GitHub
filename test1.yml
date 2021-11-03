@@ -1,6 +1,8 @@
 ---
 - name: capacity
   hosts: node2
+  become: yes
+  become_user: root
   tasks:
 
     - name: Pre change disk check
@@ -11,5 +13,5 @@
 
     - copy:
         content: "{{ space.stdout_lines }}"
-        dest: "/var/diskcap.txt"
+        dest: "/diskcap.txt"
         
