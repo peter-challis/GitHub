@@ -2,8 +2,14 @@
 - name: capacity
   hosts: node2
   tasks:
+
     - name: Pre change disk check
       command: df -h
       register: space
     - debug:
         var: space.stdout_lines
+
+    - copy:
+        content: "{{ space.stdout_lines }}"
+        dest: "/var/diskcap.txt"
+        
