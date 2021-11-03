@@ -4,9 +4,17 @@
   become_user: root
   tasks:
 
-# remember to add pre + post capacity.  debug to screen and to eventlogs
 # ask for path or file, file name, inc ref and how many days old the file needs to be before deleting/archiving
 # [ansible@control ~]$ ansible-playbook -i inventory zip02.yml -e "in_path=/home in_pattern=m*.log"
+
+  - name: Pre change disk check
+    command: df -h
+    register: space
+  - debug:
+      var: space.stdout_lines
+  - copy:
+      content: "{{ space.stdout_lines }}"
+      dest: "/var/diskcaplog/Drive-Cap-PrePB-{{ansible_date_time.iso8601}}.log"
 
   - name: Ansible find file examples
     find:
@@ -33,3 +41,12 @@
       path: "{{ item.path }}"
       state: absent
     with_items: '{{ files_matched.files }}'
+
+  - name: Post change disk check
+    command: df -h
+    register: space
+  - debug:
+      var: space.stdout_lines
+  - copy:
+      content: "{{ space.stdout_lines }}"
+      dest: "/var/diskcaplog/Drive-Cap-PostPB-{{ansible_date_time.iso8601}}.log"
