@@ -1,0 +1,16 @@
+---
+- name: capacity
+  hosts: node2
+  become: yes
+  become_user: root
+  tasks:
+
+    - name: Pre change disk check
+      command: df -h
+      register: space
+    - debug:
+        var: space.stdout_lines
+
+    - copy:
+        content: "{{ ansible_date_time.iso8601.space.stdout_lines }}"
+        dest: "/var/diskcap{{ansible_date_time.date}}.txt"

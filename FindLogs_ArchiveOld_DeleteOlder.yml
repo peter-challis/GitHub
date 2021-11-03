@@ -1,0 +1,35 @@
+---
+- hosts: node2
+  become: yes
+  become_user: root
+  tasks:
+
+# remember to add pre + post capacity.  debug to screen and to eventlogs
+# ask for path or file, file name, inc ref and how many days old the file needs to be before deleting/archiving
+# [ansible@control ~]$ ansible-playbook -i inventory zip02.yml -e "in_path=/home in_pattern=m*.log"
+
+  - name: Ansible find file examples
+    find:
+      paths: "{{in_path}}"
+      patterns: "{{in_pattern}}"
+#      age: 24h
+#      age_stamp: atime
+#      recurse: yes
+    register: files_matched
+
+  - debug:
+      msg: "{{ item.path }}"
+    with_items: '{{ files_matched.files }}'
+
+  - archive:
+      path: "{{ item.path }}"
+#      remove: True
+#      dest: /var/test1gz
+      format: gz
+    with_items: '{{ files_matched.files }}'
+
+  - name: delete files
+    file:
+      path: "{{ item.path }}"
+      state: absent
+    with_items: '{{ files_matched.files }}'
