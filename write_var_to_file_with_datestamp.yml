@@ -13,4 +13,4 @@
 
     - copy:
         content: "{{ space.stdout_lines }}"
-        dest: "/var/diskcap-{{ansible_date_time.iso8601}}.txt"
+        dest: "/var/diskcaplog/Drive-Cap-PrePB-{{ansible_date_time.iso8601}}.log"
