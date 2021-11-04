@@ -1,8 +1,9 @@
 ---
 - hosts: node2
-  become: yes
+  gather_facts: false
+#  become: yes
 #  remote_user: root
-  become_user: root
+#  become_user: root
 
 # ask for path or file, file name, inc ref and how many days old the file needs to be before deleting/archiving
 # Non-tower usage - [ansible@control ~]$ ansible-playbook -i inventory zip02.yml -e "in_path=/home in_pattern=m*.log"
