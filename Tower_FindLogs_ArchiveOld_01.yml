@@ -34,8 +34,8 @@
 
   - name: Ansible find file examples
     find:
-      paths: "{{in_path}}"
-      patterns: "{{in_pattern}}"
+      paths: {{in_path}}
+      patterns: {{in_pattern}}
 #      age: 24h
 #      age_stamp: atime
 #      recurse: yes
