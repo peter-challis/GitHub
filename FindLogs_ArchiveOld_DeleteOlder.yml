@@ -1,13 +1,16 @@
 ---
 - hosts: node2
+  gather_facts: false
   become: yes
 #  remote_user: root
-  become_user: root
-  tasks:
+  become_user: toweradmin
+  vars:
+    ansible_become_pass: P@ssw0rdAdmin
 
 # ask for path or file, file name, inc ref and how many days old the file needs to be before deleting/archiving
-# [ansible@control ~]$ ansible-playbook -i inventory zip02.yml -e "in_path=/home in_pattern=m*.log"
+# [ansible@control ~]$ ansible-playbook -i inventory zip02.yml -e "in_path=/home/toweradmin/logs in_pattern=m*.log"
 
+  tasks:
   - name: Pre change disk check
     command: df -h
     register: space
@@ -15,7 +18,7 @@
       var: space.stdout_lines
   - copy:
       content: "{{ space.stdout_lines }}"
-      dest: "/home/Drive-Cap-PrePB-{{ansible_date_time.iso8601}}.log"
+      dest: "/home/toweradmin/logs/DiskSpacePreArchive-{{ansible_date_time.iso8601}}.log"
 
   - name: Ansible find file examples
     find:
@@ -50,4 +53,4 @@
       var: space.stdout_lines
   - copy:
       content: "{{ space.stdout_lines }}"
-      dest: "/home/Drive-Cap-PostPB-{{ansible_date_time.iso8601}}.log"
+      dest: "/home/toweradmin/logs/DiskSpacePreArchive-{{ansible_date_time.iso8601}}.log"
