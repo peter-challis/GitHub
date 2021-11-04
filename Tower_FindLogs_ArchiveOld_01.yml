@@ -11,11 +11,11 @@
   vars_prompt:
 
   - name: in_path
-    prompt: Where are the files?  i.e. /home
+    prompt: Where are the files?  i.e. /home/toweradmin/logs
     private: no
 
   - name: in_pattern
-    prompt: Whats their pattern?  i.e. m*.log
+    prompt: Whats their pattern?  i.e. message*.log
     private: no
 
   tasks:
@@ -28,7 +28,7 @@
   - copy:
       content: "{{ space.stdout_lines }}"
 #      dest: "/home/Drive-Cap-PrePB-{{ansible_date_time.iso8601}}.log"
-      dest: "/home/Drive-Cap-PrePB.log"
+      dest: "/home/toweradmin/logs/Drive-Cap-PrePB.log"
 
   - name: Ansible find file examples
     find:
@@ -63,4 +63,4 @@
       var: space.stdout_lines
   - copy:
       content: "{{ space.stdout_lines }}"
-      dest: "/home/Drive-Cap-PostPB-{{ansible_date_time.iso8601}}.log"
+      dest: "/home/toweradmin/logs/Drive-Cap-PostPB-{{ansible_date_time.iso8601}}.log"
