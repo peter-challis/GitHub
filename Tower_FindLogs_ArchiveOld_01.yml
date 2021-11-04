@@ -30,7 +30,7 @@
   - copy:
       content: "{{ space.stdout_lines }}"
 #      dest: "/home/toweradmin/logs/Drive-Cap-PrePB-{{ansible_date_time.iso8601}}.log"
-      dest: "/home/toweradmin/logs/Drive-Cap-PrePB.log"
+      dest: "/home/toweradmin/logs/DiskSpacePreArchive.log"
 
   - name: Ansible find file examples
     find:
@@ -65,4 +65,4 @@
       var: space.stdout_lines
   - copy:
       content: "{{ space.stdout_lines }}"
-      dest: "/home/toweradmin/logs/Drive-Cap-PostPB.log"
+      dest: "/home/toweradmin/logs/DiskSpacePreArchive.log"
