@@ -1,7 +1,8 @@
 ---
 - hosts: node2
   become: yes
-  become_user: root
+  remote_user: root
+#  become_user: root
   tasks:
 
 # ask for path or file, file name, inc ref and how many days old the file needs to be before deleting/archiving
