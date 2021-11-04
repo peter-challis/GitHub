@@ -3,10 +3,9 @@
   become: yes
 #  remote_user: root
   become_user: root
-  tasks:
 
 # ask for path or file, file name, inc ref and how many days old the file needs to be before deleting/archiving
-# [ansible@control ~]$ ansible-playbook -i inventory zip02.yml -e "in_path=/home in_pattern=m*.log"
+# Non-tower usage - [ansible@control ~]$ ansible-playbook -i inventory zip02.yml -e "in_path=/home in_pattern=m*.log"
 
   vars_prompt:
 
@@ -17,6 +16,8 @@
   - name: in_pattern
     prompt: Whats their pattern?  i.e. m*.log
     private: no
+
+  tasks:
 
   - name: Pre change disk check
     command: df -h
