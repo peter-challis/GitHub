@@ -18,7 +18,7 @@
 
   tasks:
   - name: Pre change disk check
-    command: df -h {{in_pattern}}
+    command: df -h {{in_path}}
     register: space
     
   - name: Print the filesystem usage before any activity has been taken
@@ -60,7 +60,7 @@
     with_items: '{{ files_matched.files }}'
 
   - name: Post change disk check
-    command: df -h {{in_pattern}}
+    command: df -h {{in_path}}
     register: space
   - debug:
       var: space.stdout_lines
