@@ -18,9 +18,9 @@
       var: space.stdout_lines
   - copy:
       content: "{{ space.stdout_lines }}"
-      dest: "/home/toweradmin/logs/DiskSpacePreArchive-{{ansible_date_time.iso8601}}.log"
+      dest: "/home/toweradmin/logs/DiskSpacePreArchive-{{ansible_date_time.iso8601}}.txt"
 
-  - name: Ansible find file examples
+  - name: Ansible find file examples from {{in_path}}
     find:
       paths: "{{in_path}}"
       patterns: "{{in_pattern}}"
@@ -53,4 +53,4 @@
       var: space.stdout_lines
   - copy:
       content: "{{ space.stdout_lines }}"
-      dest: "/home/toweradmin/logs/DiskSpacePostArchive-{{ansible_date_time.iso8601}}.log"
+      dest: "/home/toweradmin/logs/DiskSpacePostArchive-{{ansible_date_time.iso8601}}.txt"
