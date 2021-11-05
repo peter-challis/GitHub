@@ -15,6 +15,10 @@
   - name: in_pattern
     prompt: Whats their pattern?  i.e. message*.log
     private: no
+    
+  - name: in_age
+    prompt: What is the age of the files you want to archive?  i.e. 30s (30 seconds), 5m (5 minutes), 6h (6 hours), 1d (1 days), or 3w (3 weeks)
+    private: no
 
   tasks:
   - name: Pre change disk check
@@ -35,17 +39,16 @@
     find:
       paths: "{{in_path}}"
       patterns: "{{in_pattern}}"
-#      age: 24h
-#      age_stamp: atime
-#      recurse: yes
+      age: "{{in_age}}"
+      recurse: yes
     register: files_matched
 
-  - name: Print the files that matched {{in_pattern}} in {{in_path}}
+  - name: Print the files that matched {{in_pattern}} in {{in_path}} and are over {{in_age}} old
     debug:
       msg: "{{ item.path }}"
     with_items: '{{ files_matched.files }}'
 
-  - name: Archive to gz file type all the files which matched {{in_pattern}} in {{in_path}}
+  - name: Archive to gz file type all the files which matched {{in_pattern}} in {{in_path}} and are over {{in_age}} old
     archive:
       path: "{{ item.path }}"
 #      remove: True
@@ -53,7 +56,7 @@
       format: gz
     with_items: '{{ files_matched.files }}'
 
-  - name: Delete the files which matched {{in_pattern}} in {{in_path}}
+  - name: Delete the files which matched {{in_pattern}} in {{in_path}} and are over {{in_age}} old
     file:
       path: "{{ item.path }}"
       state: absent
