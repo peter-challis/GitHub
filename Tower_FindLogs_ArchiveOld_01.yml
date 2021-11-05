@@ -43,7 +43,8 @@
       msg: "{{ item.path }}"
     with_items: '{{ files_matched.files }}'
 
-  - archive:
+  - name: zipping all found files
+    archive:
       path: "{{ item.path }}"
 #      remove: True
 #      dest: /var/test1gz
