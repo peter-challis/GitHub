@@ -51,16 +51,16 @@
   - name: Archive to gz file type all the files which matched {{in_pattern}} in {{in_path}} and are over {{in_age}} old
     archive:
       path: "{{ item.path }}"
-#      remove: True
+      remove: True
 #      dest: /var/test1gz
       format: gz
     with_items: '{{ files_matched.files }}'
 
-  - name: Delete the files which matched {{in_pattern}} in {{in_path}} and are over {{in_age}} old
-    file:
-      path: "{{ item.path }}"
-      state: absent
-    with_items: '{{ files_matched.files }}'
+#  - name: Delete the files which matched {{in_pattern}} in {{in_path}} and are over {{in_age}} old
+#    file:
+#      path: "{{ item.path }}"
+#      state: absent
+#    with_items: '{{ files_matched.files }}'
 
   - name: Post change disk check
     command: df -h {{in_path}}
