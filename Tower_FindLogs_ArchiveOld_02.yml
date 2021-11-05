@@ -33,7 +33,7 @@
     copy:
       content: "{{ space.stdout_lines }}"
 #      dest: "/home/toweradmin/logs/DiskSpacePreArchive-{{ansible_date_time.iso8601}}.log"
-      dest: "/home/toweradmin/logs/DiskSpacePreArchive.log"
+      dest: "/home/toweradmin/logs/DiskSpacePreArchive.txt"
 
   - name: Ansible find files matching {{in_pattern}} in {{in_path}}
     find:
@@ -71,4 +71,4 @@
   - name: Store the filesystem usage output in /home/toweradmin/logs/DiskSpacePostArchive.log
     copy:
       content: "{{ space.stdout_lines }}"
-      dest: "/home/toweradmin/logs/DiskSpacePostArchive.log"
+      dest: "/home/toweradmin/logs/DiskSpacePostArchive.txt"
