@@ -1,5 +1,5 @@
 ---
-- hosts: node2
+- hosts: node3
   gather_facts: false
   become: yes
   become_user: root
