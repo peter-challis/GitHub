@@ -18,20 +18,6 @@
     private: no
 
   tasks:
-  - name: Pre change disk check
-    command: df -h {{in_path}}
-    register: space
-
-  - name: Print the filesystem usage before any activity has been taken
-    debug:
-      var: space.stdout_lines
-
-  - name: Store the filesystem usage output in /home/toweradmin/logs/DiskSpacePreArchive.txt
-    copy:
-      content: "{{ space.stdout_lines }}"
-#      dest: "/home/toweradmin/logs/DiskSpacePreArchive-{{ansible_date_time.iso8601}}.log"
-      dest: "/home/toweradmin/logs/DiskPreDelete.txt"
-
   - name: Ansible find files matching {{in_pattern}} in {{in_path}} aged {{in_age}}
     find:
       paths: "{{in_path}}"
@@ -45,11 +31,11 @@
       msg: "{{ item.path }}"
     with_items: '{{ files_matched.files }}'
 
-  - name: Delete archive files which matched {{in_pattern}} in {{in_path}} and are over {{in_age}} old
-    ansible.builtin.file:
-      path: "{{ item.path }}"
-      state: absent
-    with_items: '{{ files_matched.files }}'
+#  - name: Delete archive files which matched {{in_pattern}} in {{in_path}} plus over {{in_age}} in age
+#    ansible.builtin.file:
+#      path: "{{ item.path }}"
+#      state: absent
+#    with_items: '{{ files_matched.files }}'
 
 #    archive:
 #      path: "{{ item.path }}"
@@ -57,20 +43,3 @@
 #      dest: /var/test1gz
 #      format: gz
 #    with_items: '{{ files_matched.files }}'
-
-#  - name: Delete the files which matched {{in_pattern}} in {{in_path}} and are over {{in_age}} old
-#    file:
-#      path: "{{ item.path }}"
-#      state: absent
-#    with_items: '{{ files_matched.files }}'
-
-  - name: Post change disk check
-    command: df -h {{in_path}}
-    register: space
-  - debug:
-      var: space.stdout_lines
-
-  - name: Store the filesystem usage output in /home/toweradmin/logs/DiskSpacePostArchive.log
-    copy:
-      content: "{{ space.stdout_lines }}"
-      dest: "/home/toweradmin/logs/DiskPostDelete.txt"
