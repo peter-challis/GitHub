@@ -31,11 +31,11 @@
       msg: "{{ item.path }}"
     with_items: '{{ files_matched.files }}'
 
-#  - name: Delete archive files which matched {{in_pattern}} in {{in_path}} plus over {{in_age}} in age
-#    ansible.builtin.file:
-#      path: "{{ item.path }}"
-#      state: absent
-#    with_items: '{{ files_matched.files }}'
+  - name: Delete archive files from var {{ files_matched.files}}
+    file:
+      path: "{{ item.path }}"
+      state: absent
+    with_items: "{{ files_matched.files }}"
 
 #    archive:
 #      path: "{{ item.path }}"
