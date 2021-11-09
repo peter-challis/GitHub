@@ -1,0 +1,13 @@
+---
+- hosts: node1, windows
+  gather_facts: false
+  become: yes
+  become_user: root
+
+  tasks:
+  - name: copy file from window to linux
+    fetch:
+      src: c:/temp
+      dest: /home/toweradmin/logs
+      remote_src: yes
+      
