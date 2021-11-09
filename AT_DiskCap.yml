@@ -6,12 +6,19 @@
 
   tasks:
   - name: Pre change disk check
-    command: df -h
+    command: df -h /home/toweradmin/logs
     register: space
 
   - name: Print the filesystem usage before any activity has been taken
     debug:
       var: space.stdout_lines
+
+  - name: Execute the Uptime command over Command module
+    register: uptimeoutput
+    command: "uptime"
+
+  - debug: Print server uptime
+      var: uptimeoutput.stdout_lines
 
   - name: Store the filesystem usage output in /home/toweradmin/logs/DiskSpacePreArchive.log
     copy:
