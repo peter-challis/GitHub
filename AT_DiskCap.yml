@@ -1,0 +1,20 @@
+---
+- hosts: node1
+  gather_facts: false
+  become: yes
+  become_user: root
+
+  tasks:
+  - name: Pre change disk check
+    command: df -h {{in_path}}
+    register: space
+
+  - name: Print the filesystem usage before any activity has been taken
+    debug:
+      var: space.stdout_lines
+
+  - name: Store the filesystem usage output in /home/toweradmin/logs/DiskSpacePreArchive.log
+    copy:
+      content: "{{ space.stdout_lines }}"
+#      dest: "/home/toweradmin/logs/DiskSpacePreArchive-{{ansible_date_time.iso8601}}.log"
+      dest: "/home/toweradmin/logs/DiskSpacePreArchive.txt"

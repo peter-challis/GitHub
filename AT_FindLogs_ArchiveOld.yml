@@ -1,0 +1,54 @@
+---
+- hosts: node1
+  gather_facts: false
+  become: yes
+  become_user: root
+
+  vars_prompt:
+  - name: in_path
+    prompt: Where are the files?  i.e. /home/toweradmin/logs
+    private: no
+
+  - name: in_pattern
+    prompt: Whats their pattern?  i.e. message*.log
+    private: no
+
+  - name: in_age
+    prompt: What is the age of the files you want to archive?  i.e. 30s (30 seconds), 5m (5 minutes), 6h (6 hours), 1d (1 days), or 3w (3 weeks)
+    private: no
+
+  tasks:
+  - name: Pre change disk check
+    command: df -h {{in_path}}
+    register: space
+
+  - name: Print the filesystem usage before any activity has been taken
+    debug:
+      var: space.stdout_lines
+
+  - name: Ansible find files matching {{in_pattern}} in {{in_path}}
+    find:
+      paths: "{{in_path}}"
+      patterns: "{{in_pattern}}"
+      age: "{{in_age}}"
+      recurse: yes
+    register: files_matched
+
+  - name: Print the files that matched {{in_pattern}} in {{in_path}} and are over {{in_age}} old
+    debug:
+      msg: "{{ item.path }}"
+    with_items: '{{ files_matched.files }}'
+
+  - name: Archive to gz file type all the files which matched {{in_pattern}} in {{in_path}} and are over {{in_age}} old
+    archive:
+      path: "{{ item.path }}"
+      remove: True
+#      dest: /var/test1gz
+      format: gz
+    with_items: '{{ files_matched.files }}'
+
+  - name: Post change disk check
+    command: df -h {{in_path}}
+    register: space
+  - debug:
+      var: space.stdout_lines
