@@ -6,7 +6,7 @@
 
   tasks:
   - name: Pre change disk check
-    command: df -h {{in_path}}
+    command: df -h
     register: space
 
   - name: Print the filesystem usage before any activity has been taken
