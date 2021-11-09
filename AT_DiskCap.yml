@@ -14,7 +14,6 @@
       var: space.stdout_lines
 
   - name: Execute the Uptime command over Command module
-    command: "date"
     command: "uptime"
     register: uptimeoutput
 
