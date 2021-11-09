@@ -11,7 +11,7 @@
 192.168.56.203
 
 [windows]
-192.168.56.108
+10.0.2.15
 
 [windows:vars]
 ansible_connection=winrm
