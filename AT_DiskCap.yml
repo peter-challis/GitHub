@@ -41,4 +41,4 @@
   - name: copy capacity in to txt with Datestamp
     copy:
       content: "{{ space.stdout_lines }} {{ uptimeoutput.stdout_lines }}"
-      dest: "/home/toweradmin/logs/Datestamp:{{ cur_date }}:{{ cur_time }}.txt"
+      dest: "/home/toweradmin/logs/DiskCap:{{ cur_date }}:{{ cur_time }}.txt"
