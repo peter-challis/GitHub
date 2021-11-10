@@ -4,17 +4,17 @@
   tasks:
   - name: Get timestamp from the system, include the first 5 nanoseconds digits
     shell: "date +%Y-%m-%d%H-%M-%S.%5N"
-    register: tstamp_ns
+    register: tstamp
 
   - name: Set variables
     set_fact:
-     cur_time_ns: "{{ tstamp_ns.stdout[10:]}}"
+     cur_time_ns: "{{ tstamp.stdout[10:]}}"
 
   - name: System timestamp - time, including the first 5 nanoseconds digits
     debug:
-     msg:  "{{ cur_time_ns }}"
+     msg:  "{{ cur_time }}"
 
   - name: copy info into txt - cur_time_ns
     copy:
-      content: "{{ cur_time_ns }}"
-      dest: "/home/toweradmin/logs/DatestampCur-{{ cur_time_ns }}.txt"
+      content: "{{ cur_time }}"
+      dest: "/home/toweradmin/logs/DatestampCur-{{ cur_time }}.txt"
