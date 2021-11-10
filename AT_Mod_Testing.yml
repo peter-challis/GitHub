@@ -30,3 +30,9 @@
   - name: System timestamp - time, including the first 5 nanoseconds digits
     debug:
      msg:  "{{ cur_time_ns }}"
+
+  - name: copy info into txt
+    copy:
+      content: "{{ cur_time_ns }}"
+#      dest: "/home/toweradmin/logs/DiskSpace-{{ansible_date_time.iso8601}}.log"
+      dest: "/home/toweradmin/logs/Datestamp-{{ cur_time_ns }}.txt"
