@@ -1,0 +1,27 @@
+---
+- hosts: node1
+  gather_facts: false
+  become: yes
+  become_user: root
+
+  tasks:
+  - name: Disk capacity check
+    command: df -hT /home/toweradmin/logs
+    register: space
+
+  - name: Print the filesystem usage before any activity has been taken
+    debug:
+      var: space.stdout_lines
+
+  - name: Uptime executed to add time stamp to txt
+    command: "uptime"
+    register: uptimeoutput
+
+  - name: Print server uptime
+    debug:
+      var: uptimeoutput.stdout_lines
+
+  - name: Store the filesystem usage output in /home/toweradmin/logs/DiskSpacePreArchive.log
+    copy:
+      content: "{{ space.stdout_lines }} {{ uptimeoutput.stdout_lines }}"
+      dest: "/home/toweradmin/logs/DiskSpace-{{ ansible_date_time.date }}.log"
