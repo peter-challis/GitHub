@@ -5,6 +5,10 @@
   become_user: root
 
   tasks:
+  - name: Memory check
+    command: free -h -w
+    register: memory
+
   - name: Disk capacity check
     command: df -hT /home/toweradmin/logs
     register: space
@@ -40,6 +44,5 @@
 
   - name: copy capacity in to txt with Datestamp
     copy:
-      content: "{{ space.stdout_lines }}"
-      content:  "{{ uptimeoutput.stdout_lines }}"
+      content: "{{ space.stdout_lines }} {{ uptimeoutput.stdout_lines }} {{ memory }}"
       dest: "/home/toweradmin/logs/DiskCap:{{ cur_date }}:{{ cur_time }}.txt"
