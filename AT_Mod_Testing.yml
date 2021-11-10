@@ -22,4 +22,4 @@
   - name: copy info into txt - cur_time_ns
     copy:
       content: "{{ cur_time }}"
-      dest: "/home/toweradmin/logs/DatestampCur-{{ cur_date }}{{ cur_time }}.txt"
+      dest: "/home/toweradmin/logs/DatestampCur-{{ cur_date }}:{{ cur_time }}.txt"
