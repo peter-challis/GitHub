@@ -1,8 +1,5 @@
 ---
 - hosts: node1
-  gather_facts: True
-#  become: yes
-#  become_user: root
 
   tasks:
   - name: Get timestamp from the system, include the first 5 nanoseconds digits
@@ -21,8 +18,3 @@
     copy:
       content: "{{ cur_time_ns }}"
       dest: "/home/toweradmin/logs/DatestampCur-{{ cur_time_ns }}.txt"
-
-  - name: copy info into txt - ansible_date_time
-    copy:
-      content: "{{ cur_time_ns }}"
-      dest: "/home/toweradmin/logs/DatestampAns-{{ ansible_date_time }}.log"
