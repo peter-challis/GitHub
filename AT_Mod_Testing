@@ -24,5 +24,4 @@
   - name: Store the filesystem usage output in /home/toweradmin/logs/DiskSpacePreArchive.log
     copy:
       content: "{{ space.stdout_lines }} {{ uptimeoutput.stdout_lines }}"
-#      dest: "/home/toweradmin/logs/DiskSpace-{{ansible_date_time.iso8601}}.log"
-      dest: "/home/toweradmin/logs/DiskSpace.txt"
+      dest: "/home/toweradmin/logs/DiskSpace-{{ ansible_date_time.date }}.log"

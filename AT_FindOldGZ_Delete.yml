@@ -36,10 +36,3 @@
       path: "{{ item.path }}"
       state: absent
     with_items: "{{ files_matched.files }}"
-
-#    archive:
-#      path: "{{ item.path }}"
-#      remove: True
-#      dest: /var/test1gz
-#      format: gz
-#    with_items: '{{ files_matched.files }}'
