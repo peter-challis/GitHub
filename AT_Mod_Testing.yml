@@ -5,7 +5,6 @@
   become_user: root
 
   tasks:
-
   - name: Get timestamp from the system
     shell: "date +%Y-%m-%d%H-%M-%S"
     register: tstamp
