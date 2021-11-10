@@ -1,6 +1,6 @@
 ---
 - hosts: node1
-#  gather_facts: false
+  gather_facts: True
 #  become: yes
 #  become_user: root
 
@@ -17,8 +17,12 @@
     debug:
      msg:  "{{ cur_time_ns }}"
 
-  - name: copy info into txt
+  - name: copy info into txt - cur_time_ns
+    copy:
+      content: "{{ cur_time_ns }}"
+      dest: "/home/toweradmin/logs/DatestampCur-{{ cur_time_ns }}.txt"
+
+  - name: copy info into txt - ansible_date_time
     copy:
       content: "{{ cur_time_ns }}"
       dest: "/home/toweradmin/logs/DatestampAns-{{ ansible_date_time }}.log"
-      dest: "/home/toweradmin/logs/DatestampCur-{{ cur_time_ns }}.txt"
