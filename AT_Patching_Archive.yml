@@ -36,7 +36,7 @@
 
   - name: Archive to gz file type all the files which matched {{in_pattern}} in {{in_path}}
     archive:
-      path: "{{ in_path }}"
+      paths: "{{ in_path }}"
       remove: True
       dest: "{{ in_dest }}"
       format: gz
