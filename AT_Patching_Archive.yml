@@ -34,11 +34,13 @@
       msg: "{{ item.path }}"
     with_items: '{{ files_matched.files }}'
 
-  - name: Servername and datestamp for archive file
+  - name: server name for archive file
+    shell: hostname
+    register: srv_name
+
+  - name: datestamp for archive file
     shell: "date +%Y-%m-%d%H-%M-%S"
     register: tstamp
-    shell: hostname
-    register: server_name
 
   - name: Set variables
     set_fact:
@@ -49,7 +51,7 @@
     archive:
       path: "{{ item.path }}"
       remove: True
-      dest: /var/reports/archive/PatchingReport-{{server_name}}:{{ cur_date }}:{{ cur_time }}.gz
+      dest: /var/reports/archive/PatchingReport-{{srv_name}}:{{ cur_date }}:{{ cur_time }}.gz
       format: gz
     with_items: '{{ files_matched.files }}'
 
