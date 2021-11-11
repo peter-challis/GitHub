@@ -40,7 +40,7 @@
 
   - name: to screen
     debug:
-      msg: "{{srv_name}}"
+      msg: "{{srv_name.stdout}}"
 
   - name: datestamp for archive file
     shell: "date +%Y-%m-%d%H-%M-%S"
