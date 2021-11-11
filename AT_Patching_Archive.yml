@@ -36,7 +36,7 @@
 
   - name: Archive to gz file type all the files which matched {{in_pattern}} in {{in_path}}
     archive:
-      path: "{{ item.path }}"
+      path: "{{ in_path }}"
       remove: True
       dest: "{{ in_dest }}"
       format: gz
@@ -52,6 +52,6 @@
 
   - name: Delete archive files from {{ files_matched.files}} older than {{ in-age}}
     file:
-      path: "{{ item.path }}"
+      path: "{{ in_dest }}"
       state: absent
     with_items: "{{ archive_matched.files }}"
