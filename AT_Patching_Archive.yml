@@ -46,7 +46,7 @@
   - name: Find archive files matching .gz in {{in_dest}} aged {{in_age}}
     find:
       paths: "{{in_dest}}"
-      patterns: *.gz
+      patterns: "*.gz"
       age: "{{in_age}}"
       recurse: yes
     register: archive_matched
