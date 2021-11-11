@@ -34,11 +34,22 @@
       msg: "{{ item.path }}"
     with_items: '{{ files_matched.files }}'
 
+  - name: Servername and datestamp for archive file
+    shell: "date +%Y-%m-%d%H-%M-%S"
+    register: tstamp
+    shell: hostname
+    register: server_name
+
+  - name: Set variables
+    set_fact:
+     cur_date: "{{ tstamp.stdout[0:10]}}"
+     cur_time: "{{ tstamp.stdout[10:]}}"
+
   - name: Archive to gz file type all the files which matched {{in_pattern}} in {{in_path}}
     archive:
       path: "{{ item.path }}"
       remove: True
-      dest: /var/reports/archive/server_name.gz
+      dest: /var/reports/archive/PatchingReport-{{server_name}}:{{ cur_date }}:{{ cur_time }}.gz
       format: gz
     with_items: '{{ files_matched.files }}'
 
