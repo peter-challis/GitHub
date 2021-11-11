@@ -1,0 +1,58 @@
+---
+- hosts: node1
+  gather_facts: false
+  become: yes
+  become_user: root
+
+  vars_prompt:
+  - name: in_path
+    prompt: Location of patch files?  i.e. /var/reports
+    private: no
+
+  - name: in_pattern
+    prompt: File pattern?  i.e. *_Installed.csv
+    private: no
+
+  - name: in_age
+    prompt: Archive files older than 18 months will be deleted.  Amend if required using 1d (1 days), 3w (3 weeks) 4m (4 months)
+    private: no
+
+  - name: in_dest
+    prompt: Archived files rep.  i.e. /var/reports/archive
+    private: no
+
+  tasks:
+  - name: Find patching files matching {{in_pattern}} in {{in_path}} aged {{in_age}}
+    find:
+      paths: "{{in_path}}"
+      patterns: "{{in_pattern}}"
+      age: "{{in_age}}"
+      recurse: yes
+    register: files_matched
+
+  - name: Print the files that matched {{in_pattern}} in {{in_path}} and are over {{in_age}} old
+    debug:
+      msg: "{{ item.path }}"
+    with_items: '{{ files_matched.files }}'
+
+  - name: Archive to gz file type all the files which matched {{in_pattern}} in {{in_path}} and are over {{in_age}} old
+    archive:
+      path: "{{ item.path }}"
+      remove: True
+      dest: "{{ item.dest }}"
+      format: gz
+    with_items: '{{ files_matched.files }}'
+
+  - name: Find archive files matching .gz in {{in_dest}} aged {{in_age}}
+    find:
+      paths: "{{in_dest}}"
+      patterns: *.gz
+      age: "{{in_age}}"
+      recurse: yes
+    register: archive_matched
+
+  - name: Delete archive files from {{ files_matched.files}} older than {{ in-age}}
+    file:
+      path: "{{ item.path }}"
+      state: absent
+    with_items: "{{ archive_matched.files }}"
