@@ -38,7 +38,7 @@
     archive:
       path: "{{ item.path }}"
       remove: True
-      dest: "{{ in_dest }}"
+#      dest: /var/test1gz
       format: gz
     with_items: '{{ files_matched.files }}'
 
