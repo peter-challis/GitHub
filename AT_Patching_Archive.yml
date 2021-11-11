@@ -67,6 +67,8 @@
       recurse: yes
     register: archive_matched
 
+NEED TO CREATE THE DIR ARCHIVE IF NOT EXIST!!!
+
   - name: Delete archive files from {{ archive_matched.files }} older than {{ in_age }}
     file:
       path: "{{ in_dest }}"
