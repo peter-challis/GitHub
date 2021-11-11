@@ -51,7 +51,7 @@
     archive:
       path: "{{ item.path }}"
       remove: True
-      dest: /var/reports/archive/PatchingReport-{{srv_name}}:{{ cur_date }}:{{ cur_time }}.gz
+      dest: "/var/reports/archive/PatchingReport-{{ srv_name }}:{{ cur_date }}:{{ cur_time }}.gz"
       format: gz
     with_items: '{{ files_matched.files }}'
 
