@@ -37,6 +37,8 @@
   - name: server name for archive file
     shell: hostname
     register: srv_name
+
+  - name: to screen
     debug:
       msg: "{{srv_name}}"
 
