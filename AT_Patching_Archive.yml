@@ -36,17 +36,18 @@
 
   - name: server name for archive file
     shell: hostname
-    register: srv_name
+    register: srv_out
 
   - name: to screen
     debug:
-      msg: "{{srv_name.stdout}}"
+      msg: "{{srv_out.stdout}}"
+    register: srv_file
 
   - name: datestamp for archive file
     shell: "date +%Y-%m-%d%H-%M-%S"
     register: tstamp
 
-  - name: Set variables
+  - name: Set var for datestamp
     set_fact:
      cur_date: "{{ tstamp.stdout[0:10]}}"
      cur_time: "{{ tstamp.stdout[10:]}}"
@@ -55,7 +56,7 @@
     archive:
       path: "{{ item.path }}"
       remove: True
-      dest: "/var/reports/archive/PatchingReport:{{ cur_date }}:{{ cur_time }}.gz"
+      dest: "/var/reports/archive/PatchingReport-{{srv_file}}:{{ cur_date }}:{{ cur_time }}.gz"
       format: gz
     with_items: '{{ files_matched.files }}'
 
