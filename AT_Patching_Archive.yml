@@ -14,7 +14,7 @@
     private: no
 
   - name: in_age
-    prompt: Archive files older than 18 months will be deleted.  Amend if required using 1d (1 days), 3w (3 weeks) 4m (4 months)
+    prompt: Archive files older than 79 weeks (18 months) will be deleted.  Amend if required using 1d (1 days) or 3w (3 weeks)
     private: no
 
   - name: in_dest
@@ -26,20 +26,19 @@
     find:
       paths: "{{in_path}}"
       patterns: "{{in_pattern}}"
-      age: "{{in_age}}"
       recurse: yes
     register: files_matched
 
-  - name: Print the files that matched {{in_pattern}} in {{in_path}} and are over {{in_age}} old
+  - name: Print the files that matched {{in_pattern}} in {{in_path}}
     debug:
       msg: "{{ item.path }}"
     with_items: '{{ files_matched.files }}'
 
-  - name: Archive to gz file type all the files which matched {{in_pattern}} in {{in_path}} and are over {{in_age}} old
+  - name: Archive to gz file type all the files which matched {{in_pattern}} in {{in_path}}
     archive:
       path: "{{ item.path }}"
       remove: True
-      dest: "{{ item.dest }}"
+      dest: "{{ in_dest }}"
       format: gz
     with_items: '{{ files_matched.files }}'
 
