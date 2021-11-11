@@ -37,6 +37,8 @@
   - name: server name for archive file
     shell: hostname
     register: srv_name
+    debug:
+      msg: "{{srv_name}}"
 
   - name: datestamp for archive file
     shell: "date +%Y-%m-%d%H-%M-%S"
@@ -51,7 +53,7 @@
     archive:
       path: "{{ item.path }}"
       remove: True
-      dest: "/var/reports/archive/PatchingReport-{{ srv_name }}:{{ cur_date }}:{{ cur_time }}.gz"
+      dest: "/var/reports/archive/PatchingReport:{{ cur_date }}:{{ cur_time }}.gz"
       format: gz
     with_items: '{{ files_matched.files }}'
 
