@@ -73,7 +73,6 @@
       recurse: yes
     register: archive_matched
 
-
   - name: Delete archive files from {{ archive_matched.files }} older than {{ in_age }}
     file:
       path: "{{ in_dest }}"
