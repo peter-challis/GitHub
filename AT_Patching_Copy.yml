@@ -1,0 +1,10 @@
+  ---
+  - name: Sync Files
+    hosts: winhost
+
+  - name: Copy from WinHost to winclone
+    win_robocopy:
+      src: "C:\\Temp\\"
+      dest: "\\WinClone\\c$\\Temp"
+      recurse: yes
+      purge: yes

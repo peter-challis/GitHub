@@ -10,10 +10,20 @@
 [node3]
 192.168.56.203
 
-[windows]
+[winhost]
 10.0.2.15
 
-[windows:vars]
+[winhost:vars]
+ansible_connection=winrm
+ansible_user=Administrator
+ansible_password=Password123
+ansible_winrm_server_cert_validation=ignore
+validate_certs=false
+
+[winclone]
+10.0.2.15
+
+[winclone:vars]
 ansible_connection=winrm
 ansible_user=Administrator
 ansible_password=Password123
