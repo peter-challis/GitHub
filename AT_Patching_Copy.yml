@@ -3,9 +3,9 @@
   gather_facts: false
 
   tasks:
-    
-  - name: Copy from WinHost to winclone
-    win_robocopy:
+
+  - name: Copy from Winhost to winclone
+    community.windows.win_robocopy:
       src: "C:\\Temp\\"
       dest: "\\winclone\\c$\\Temp"
       recurse: yes
