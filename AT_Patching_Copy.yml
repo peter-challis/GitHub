@@ -3,8 +3,8 @@
   gather_facts: false
 
   tasks:
-  - name: Sync one file from a remote UNC path in recursive and purging mode, specifying additional special flags
+  - name:
     community.windows.win_robocopy:
-      src: \\winclone\Directory One
-      dest: C:\DirectoryTwo
-      flags: file.zip /E /PURGE /XD SOME_DIR /XF SOME_FILE /MT:32
+      src: \\winclone\temp
+      dest: C:\temp
+      flags: *.* /E /PURGE /XD SOME_DIR /XF SOME_FILE /MT:32
