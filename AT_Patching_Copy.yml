@@ -2,6 +2,8 @@
 - hosts: winhost
   gather_facts: false
 
+  tasks:
+    
   - name: Copy from WinHost to winclone
     win_robocopy:
       src: "C:\\Temp\\"
