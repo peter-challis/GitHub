@@ -7,4 +7,3 @@
     community.windows.win_robocopy:
       src: \\winclone\temp
       dest: C:\temp
-      flags: *.* /E /PURGE /XD SOME_DIR /XF SOME_FILE /MT:32
