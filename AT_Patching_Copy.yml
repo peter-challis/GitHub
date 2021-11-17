@@ -3,10 +3,8 @@
   gather_facts: false
 
   tasks:
-
-  - name: Copy from Winhost to winclone
+  - name: Sync one file from a remote UNC path in recursive and purging mode, specifying additional special flags
     community.windows.win_robocopy:
-      src: "C:\\Temp\\"
-      dest: "\\winclone\\c$\\Temp"
-      recurse: yes
-      purge: yes
+      src: \\winclone\Directory One
+      dest: C:\DirectoryTwo
+      flags: file.zip /E /PURGE /XD SOME_DIR /XF SOME_FILE /MT:32
