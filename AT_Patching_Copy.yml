@@ -5,6 +5,6 @@
   - name: Copy from WinHost to winclone
     win_robocopy:
       src: "C:\\Temp\\"
-      dest: "\\WinClone\\c$\\Temp"
+      dest: "\\winclone\\c$\\Temp"
       recurse: yes
       purge: yes
