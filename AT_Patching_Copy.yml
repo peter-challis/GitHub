@@ -1,6 +1,6 @@
-  ---
-  - name: Sync Files
-    hosts: winhost
+---
+- hosts: winhost
+  gather_facts: false
 
   - name: Copy from WinHost to winclone
     win_robocopy:
