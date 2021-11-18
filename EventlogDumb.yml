@@ -1,5 +1,5 @@
 ---
-- hosts: windows
+- hosts: winhost, winclone
   gather_facts: false
   tasks:
    - name: Write an entry to a Windows event log
@@ -7,4 +7,4 @@
        log: Application
        source: Ansible
        event_id: 666
-       message: firmware updated via change
+       message: CatDad Testing
