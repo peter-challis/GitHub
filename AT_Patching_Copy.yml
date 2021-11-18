@@ -24,49 +24,49 @@
       roles:
         - role: ansible-role-event-socks-tunnel
 
-  - name: Copy files from endpoint to tower
-    hosts: winhost
-    gather_facts: True
-    vars:
-      source_path: c:\temp\*.*
-
-    tasks:
-    - name: set the facts from hosts
-      set_fact:
-        dest_path: "{{hostvar['localhost']['base_dir']}}"
-
-    - debug:
-        msg:
-        - "Source location is {{source_path}}"
-        - "Destination path is {{dest_path}}"
-
-    - name: Copy result file from the endpoint to localmachine
-      fetch:
-        src: "{{ source_path }}"
-        dest: "{{ dest_path }}"
-        flat: yes
-        validate_checksum: no
-      register: file_copy
-
-    - name: file copy failed
-      fail:
-        msg: File copied from {{ source_path }} to {{ dest_path }}
-      when: file_copy.failed == True
-
-    - name: copy file from tower to sfs
-      hosts: localhost
-      connection: local
-      gather_facts: false
-      vars:
-        sfs_upload_stage: "upload"
-      roles:
-        - role: lbg_role_sfs_upload
-
-    - name: confirm files copied from tower to SFS
+    - name: Copy files from endpoint to tower
       hosts: winhost
-      gather_facts: false
+      gather_facts: True
+      vars:
+        source_path: c:\temp\*.*
 
       tasks:
-        - name: AT to SFS file copy complete
-          debug:
-            msg: " Files copied from AT to SFS "
+      - name: set the facts from hosts
+        set_fact:
+          dest_path: "{{hostvar['localhost']['base_dir']}}"
+
+      - debug:
+          msg:
+          - "Source location is {{source_path}}"
+          - "Destination path is {{dest_path}}"
+
+      - name: Copy result file from the endpoint to localmachine
+        fetch:
+          src: "{{ source_path }}"
+          dest: "{{ dest_path }}"
+          flat: yes
+          validate_checksum: no
+        register: file_copy
+
+      - name: file copy failed
+        fail:
+          msg: File copied from {{ source_path }} to {{ dest_path }}
+        when: file_copy.failed == True
+
+      - name: copy file from tower to sfs
+        hosts: localhost
+        connection: local
+        gather_facts: false
+        vars:
+          sfs_upload_stage: "upload"
+        roles:
+          - role: lbg_role_sfs_upload
+
+      - name: confirm files copied from tower to SFS
+        hosts: winhost
+        gather_facts: false
+
+        tasks:
+          - name: AT to SFS file copy complete
+            debug:
+              msg: " Files copied from AT to SFS "
