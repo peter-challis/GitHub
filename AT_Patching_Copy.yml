@@ -2,8 +2,7 @@
 - hosts: winhost
   gather_facts: false
 
-  tasks:
   - name:
     community.windows.win_robocopy:
-      src: \\winclone\temp
+      src: \\winclone\c$\Temp\Test.txt
       dest: C:\temp
