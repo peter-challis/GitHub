@@ -14,15 +14,15 @@
       set_fact:
         base_dir: "{{base_dir}}"
 
-  - name: Roles ensures that the socks tunnel is setup
-    hosts: localhost
-    connection: local
-    gather_facts: false
-    vars:
-      acc_id: "{{ blueid_shortocde }}"
-      transaction-id: "{{ tower_job_id }}"
-    roles:
-      - role: ansible-role-event-socks-tunnel
+    - name: Roles ensures that the socks tunnel is setup
+      hosts: localhost
+      connection: local
+      gather_facts: false
+      vars:
+        acc_id: "{{ blueid_shortocde }}"
+        transaction-id: "{{ tower_job_id }}"
+      roles:
+        - role: ansible-role-event-socks-tunnel
 
   - name: Copy files from endpoint to tower
     hosts: winhost
