@@ -2,9 +2,9 @@
 - name: Sync Files
   hosts: winhost
 
-  - name: Sync ServerA to ServerB
-    win_robocopy:
-      src: "C:\\Temp\\"
-      dest: "\\winclone\\c$\\Temp"
-      recurse: yes
-      purge: yes
+  tasks:
+  - name: Copy File
+    win_copy:
+      src: C:\temp\test*.txt
+      dest: C:\temp\
+      remote_src: yes
