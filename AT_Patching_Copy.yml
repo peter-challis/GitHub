@@ -2,11 +2,11 @@
 - name: Sync Files
   hosts: winhost
   gather_facts: false
-  vars:
-    sfs_upload_stage: "prepare"
-    output_dir: "{{ results_dir_base | default('/tmp/gts-ansible/generic') }}"
-  roles:
-    - role: lbg_role_sfs_upload
+#  vars:
+#    sfs_upload_stage: "prepare"
+#    output_dir: "{{ results_dir_base | default('/tmp/gts-ansible/generic') }}"
+#  roles:
+#    - role: lbg_role_sfs_upload
 
   gather_facts: True
   tasks:
