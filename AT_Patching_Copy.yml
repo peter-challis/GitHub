@@ -1,7 +1,7 @@
 ---
 - name: Sync Files
   hosts: windows
-  gather_facts: false
+#  gather_facts: false
 #  vars:
 #    sfs_upload_stage: "prepare"
 #    output_dir: "{{ results_dir_base | default('/tmp/gts-ansible/generic') }}"
@@ -25,7 +25,7 @@
 #        - role: ansible-role-event-socks-tunnel
 
   - name: Copy files from endpoint to tower
-    hosts: windows
+#    hosts: windows
     gather_facts: True
     vars:
       source_path: c:\temp\*.*
