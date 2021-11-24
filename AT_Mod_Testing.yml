@@ -1,20 +1,20 @@
----
-- hosts: winhost
-
-  tasks:
-  - name:
-    fetch:
-      src: \\192.168.56.210\\c$\temp#
-      dest: \\192.168.56.210\\c$
-
 #---
-#- name: Sync Files
-#  hosts: winhost
+#- hosts: winhost
 #
 #  tasks:
-#  - name: Sync ServerA to ServerB
-#    win_robocopy:
-#      src: "C:\\Temp\\test.gz"
-#      dest: "\\192.168.56.210\\c$\\TEMP"
-#      recurse: true
-#      purge: true
+#  - name:
+#    fetch:
+#      src: \\192.168.56.210\\c$\temp#
+#      dest: \\192.168.56.210\\c$
+
+---
+- name: Sync Files
+  hosts: winhost
+
+  tasks:
+  - name: Sync ServerA to ServerB
+    win_robocopy:
+      src: "C:\\Temp\\test.gz"
+      dest: "\\192.168.56.210\\c$\\TEMP"
+      recurse: true
+      purge: true
