@@ -14,7 +14,7 @@
   tasks:
   - name: Sync ServerA to ServerB
     win_robocopy:
-      src: "C:\\Temp\\test.gz"
-      dest: "\\192.168.56.210\\c$\\TEMP"
+      src: "C:\\Temp\\Test_Host.txt"
+      dest: "\\win-host\\c$"
       recurse: true
       purge: true
