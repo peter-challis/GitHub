@@ -15,6 +15,6 @@
   - name: Sync ServerA to ServerB
     win_robocopy:
       src: "C:\\Temp\\Test_Host.txt"
-      dest: "\\win-host\\c$"
+      dest: "\\192.168.56.210\\c$"
       recurse: true
       purge: true
