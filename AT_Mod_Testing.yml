@@ -14,6 +14,6 @@
   tasks:
   - name: Sync
     win_robocopy:
-      src: \\win-host\c$
+      src: \\win-host\c$\temp\t
       dest: c:\temp
-      flags: Test_Host.txt /E /PURGE /XD SOME_DIR /XF SOME_FILE /MT:32
+      flags: testy.txt /E /PURGE /XD SOME_DIR /XF SOME_FILE /MT:32
