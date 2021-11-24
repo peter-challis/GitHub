@@ -15,5 +15,5 @@
   - name: Sync
     win_robocopy:
       src: \\win-host\c$
-      dest: c:\
+      dest: c:\temp
       flags: Test_Host.txt /E /PURGE /XD SOME_DIR /XF SOME_FILE /MT:32
