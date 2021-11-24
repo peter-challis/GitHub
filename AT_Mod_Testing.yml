@@ -14,7 +14,6 @@
   tasks:
   - name: Sync ServerA to ServerB
     win_robocopy:
-  win_robocopy:
-    src: \\192.168.56.210\c$\test001.txt
-    dest: C:\temp
-    flags: file.zip /E /PURGE /XD SOME_DIR /XF SOME_FILE /MT:32
+      src: \\192.168.56.210\c$\test001.txt
+      dest: C:\temp
+      flags: file.zip /E /PURGE /XD SOME_DIR /XF SOME_FILE /MT:32
