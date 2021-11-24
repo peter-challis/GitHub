@@ -1,26 +1,19 @@
+#---
+#- hosts: windows#
+#
+#- name: #
+#  fetch:
+#    src: \\192.168.56.210\\c$\temp#
+#    dest: \\192.168.56.210\\c$
+
 ---
-- hosts: node1
+- name: Sync Files
+  hosts: winhost
 
   tasks:
-  - name: Get timestamp from the system
-    shell: "date +%Y-%m-%d%H-%M-%S"
-    register: tstamp
-
-  - name: Set variables
-    set_fact:
-     cur_date: "{{ tstamp.stdout[0:10]}}"
-     cur_time: "{{ tstamp.stdout[10:]}}"
-
-  - name: System timestamp - date
-    debug:
-     msg:  "Current date: {{ cur_date }}"
-
-  - name: System timestamp - time
-    debug:
-     msg:  "Current date: {{ cur_time }}"
-
-  - name: copy info into txt - cur_time_ns
-    copy:
-      content:
-        "{{ cur_time }}  \n\n  {{ cur_date }}"
-      dest: "/home/toweradmin/logs/Datestamp:{{ cur_date }}:{{ cur_time }}.txt"
+  - name: Sync ServerA to ServerB
+    win_robocopy:
+      src: "C:\\Temp\\test.gz"
+      dest: "\\192.168.56.210\\c$\\TEMP"
+      recurse: true
+      purge: true
