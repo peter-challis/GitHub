@@ -8,6 +8,9 @@ New-Item -Path c:\PostPatching -ItemType directory -force
 $path = "InstalledPatches-$((Get-Date).ToString('yyyy-MM-dd-HH-mm-ss'))"
 New-Item -ItemType Directory -Path $path
 
+# copy <servername>_installed.csv from SFS server (or WSUS) to date stamped folder
+# possibly only copy files with a date stamp of x
+
 # merge all .csv files into one
 Get-ChildItem -Filter $path\*.csv | Select-Object -ExpandProperty FullName | Import-Csv | Export-Csv .\"CombinedPatches-$((Get-Date).ToString('yyyy-MM-dd-HH-mm-ss'))".csv -NoTypeInformation -Append
 
@@ -36,3 +39,5 @@ ForEach-Object {
     $_ | del -Force
     $_.FullName | Out-File C:\PostPatching\deletedlog.txt -Append
 }
+
+# Copy merged zip file back to SFS share
