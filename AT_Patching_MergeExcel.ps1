@@ -1,15 +1,15 @@
-﻿# To be run from WSUS via AT
-# WSUS = IFWQTV0100.test01global.lloydstsb.com
-
-# Create new folder and over write if exists
+﻿# Create new folder and over write if exists
 New-Item -Path c:\PostPatching -ItemType directory -force
 
 # Create date stamp folder for imports from endpoints
 $path = "InstalledPatches-$((Get-Date).ToString('yyyy-MM-dd-HH-mm-ss'))"
 New-Item -ItemType Directory -Path $path
-
-# copy <servername>_installed.csv from SFS server (or WSUS) to date stamped folder
+$path
+# copy <servername>_installed.csv from remote SFS server to date stamped folder
 # possibly only copy files with a date stamp of x
+get-childitem -Path "\\LAPTOP-T6UBO1E1\C`$\automation" |
+    where-object {$_.LastWriteTime -lt (get-date).AddDays(-2)} | 
+    copy-item -destination $path
 
 # merge all .csv files into one
 Get-ChildItem -Filter $path\*.csv | Select-Object -ExpandProperty FullName | Import-Csv | Export-Csv .\"CombinedPatches-$((Get-Date).ToString('yyyy-MM-dd-HH-mm-ss'))".csv -NoTypeInformation -Append
