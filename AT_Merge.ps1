@@ -13,10 +13,8 @@ foreach($file in $list){
     Import-Csv -Path $file.FullName | Export-Csv -Path $pathout -Append -NoTypeInformation
 }
 
-# Compress-Archive -Path C:\Patching\Merge\merged.csv -DestinationPath C:\Patching\Archive\*.zip
-# Get-ChildItem -Path C:\Patching\Merge\merged.csv |
-#   Compress-Archive -DestinationPath C:\Patching\Archive\"PatchArchive-$((Get-Date).ToString('yyyy-MM-dd-HH-mm-ss'))".zip
-# Remove-Item C:\Patching\report\merged.csv
+Get-ChildItem -Path C:\Patching\Merge\merged.csv |
+  Compress-Archive -DestinationPath C:\Patching\Archive\"Windows_Installed-$((Get-Date).ToString('yyyy-MM-dd-HH-mm-ss'))".zip
 
 # $Folder = "C:\Patching\Report"
 # Get-ChildItem $Folder -Recurse -Force -ea 0 |
@@ -26,5 +24,6 @@ foreach($file in $list){
 #   $_.FullName | Out-File C:\Patching\deletedlog.txt -Append
 # }
 
-
-Copy-Item C:\Patching\Archive\Patch*.zip -Destination \\LAPTOP-T6UBO1E1\C`$\automation
+Copy-Item C:\Patching\Archive\*.zip -Destination \\LAPTOP-T6UBO1E1\C`$\automation -Force
+Remove-Item C:\Patching\Archive\*.zip
+Remove-Item C:\Patching\Merge\merged*.csv
