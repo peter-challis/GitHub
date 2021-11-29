@@ -3,11 +3,11 @@ New-Item -ItemType "directory" -Path "c:\Patching\Report" -Force
 New-Item -ItemType "directory" -Path "c:\Patching\Archive" -Force
 
 get-childitem -Path "\\LAPTOP-T6UBO1E1\C`$\automation\*_installed.csv" |
-    where-object {$_.LastWriteTime -le (get-date).AddDays(-0)} | 
+    where-object {$_.LastWriteTime -le (get-date).AddDays(-2)} | 
     copy-item -destination C:\Patching\Report
 
 $pathin = 'c:\patching\report'
-$pathout = 'c:patching\Merge\merged.csv'
+$pathout = 'c:patching\Merge\Installed_Merged.csv'
 $list = Get-ChildItem -Path $pathin | select FullName
 foreach($file in $list){
     Import-Csv -Path $file.FullName | Export-Csv -Path $pathout -Append -NoTypeInformation
@@ -25,5 +25,5 @@ Get-ChildItem -Path C:\Patching\Merge\merged.csv |
 # }
 
 Copy-Item C:\Patching\Archive\*.zip -Destination \\LAPTOP-T6UBO1E1\C`$\automation -Force
-Remove-Item C:\Patching\Archive\*.zip
-Remove-Item C:\Patching\Merge\merged*.csv
+#Remove-Item C:\Patching\Archive\*.zip
+#Remove-Item C:\Patching\Merge\merged*.csv
