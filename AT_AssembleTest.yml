@@ -4,11 +4,22 @@
   become: yes
   become_user: root
 
-  vars:
-    source:
-    destination:
-    merge_filename_regex: "\\.(txt|csv)"
-    merged_file_separator_text: ""
+  vars_prompt:
+  - name: source
+    prompt: Source
+    private: no
+
+  - name: destination
+    prompt: destination
+    private: no
+
+  - name: merge_filename_regex
+    prompt: merge_filename_regex
+    private: no
+
+  - name: merged_file_separator_text
+    prompt: merged_file_separator_text
+    private: no
 
     tasks:
       - name: Merge raw contents from all data filesystem
