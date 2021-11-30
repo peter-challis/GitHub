@@ -1,0 +1,23 @@
+---
+- hosts: node1
+  gather_facts: false
+  become: yes
+  become_user: root
+
+  vars:
+    source:
+    destination:
+    merge_filename_regex: "\\.(txt|csv)"
+    merged_file_separator_text: ""
+
+    tasks:
+      - name: Merge raw contents from all data filesystem
+        assemble:
+          src: "{{ source }}"
+          dest: "{{ destination }}"
+          regexp: "{{ merge_filename_regex }}"
+          delimiter: "{{ merged_file_separator_text }}"
+        register: merge_results
+
+      - debug:
+        msg: " Files merge and placed in {{ destination }}"
