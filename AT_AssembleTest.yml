@@ -27,14 +27,14 @@
     merge_filename_regex: "\\.(txt|csv)"
     merged_file_separator_text: ""
 
-      tasks:
-        - name: Merge raw contents from all data filesystem
-          assemble:
-            src: "{{ source }}"
-            dest: "{{ destination }}"
-            regexp: "{{ merge_filename_regex }}"
-            delimiter: "{{ merged_file_separator_text }}"
-          register: merge_results
+  tasks:
+    - name: Merge raw contents from all data filesystem
+      assemble:
+        src: "{{ source }}"
+        dest: "{{ destination }}"
+        regexp: "{{ merge_filename_regex }}"
+        delimiter: "{{ merged_file_separator_text }}"
+      register: merge_results
 
-        - debug:
-          msg: " Files merge and placed in {{ destination }}"
+    - debug:
+      msg: " Files merge and placed in {{ destination }}"
