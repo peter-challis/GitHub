@@ -33,7 +33,7 @@
       src: "{{ source }}"
       dest: "{{ destination }}"
       regexp: "{{ merge_filename_regex }}"
-      validate: no
+      validate: /root/auto -t -f %s
       delimiter: "{{ merged_file_separator_text }}"
     register: merge_results
 
