@@ -28,13 +28,13 @@
     merged_file_separator_text: ""
 
   tasks:
-    - name: Merge raw contents from all data filesystem
-      assemble:
-        src: "{{ source }}"
-        dest: "{{ destination }}"
-        regexp: "{{ merge_filename_regex }}"
-        delimiter: "{{ merged_file_separator_text }}"
-      register: merge_results
+  - name: Merge raw contents from all data filesystem
+    assemble:
+      src: "{{ source }}"
+      dest: "{{ destination }}"
+      regexp: "{{ merge_filename_regex }}"
+      delimiter: "{{ merged_file_separator_text }}"
+    register: merge_results
 
-    - debug:
+  - debug:
       msg: " Files merge and placed in {{ destination }}"
