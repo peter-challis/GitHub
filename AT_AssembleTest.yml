@@ -46,10 +46,9 @@
      cur_date: "{{ tstamp.stdout[0:10]}}"
      cur_time: "{{ tstamp.stdout[10:]}}"
 
-  - name: Archive to gz file type all the files which matched {{in_pattern}} in {{in_path}}
+  - name: Archive to gz file type
     archive:
-      path: "{{ item.path }}"
+      path: /root/auto/
       remove: True
       dest: "/root/merge/PatchingReport-{{srv_out.stdout}}:{{ cur_date }}:{{ cur_time }}.gz"
       format: gz
-    with_items: '{{ files_matched.files }}'
