@@ -46,15 +46,15 @@
       dest: "/home/ansible/merged_data/PatchingReport-{{ cur_date }}:{{ cur_time }}.gz"
       format: gz
 
-    - name: Housekeeping - find all files that are older than 10 days
-      find:
-        paths: /home/ansible/merged_data
-        age: 10d
-        recurse: yes
-      register: filesOlderThan10
+  - name: Housekeeping - find all files that are older than 10 days
+    find:
+      paths: /home/ansible/merged_data
+      age: 10d
+      recurse: yes
+    register: filesOlderThan10
 
-    - name: Housekeeping - remove older than 10
-      file:
-        path: "{{ item.path }}"
-        state: absent
-      with_items: "{{ filesOlderThan10.files }}"
+  - name: Housekeeping - remove older than 10
+    file:
+      path: "{{ item.path }}"
+      state: absent
+    with_items: "{{ filesOlderThan10.files }}"
