@@ -48,7 +48,7 @@
 
   - name: Archive to gz file type
     archive:
-      path: /root/auto/
-      remove: True
+      path: /root/auto
+#      remove: True
       dest: "/root/merge/PatchingReport-{{srv_out.stdout}}:{{ cur_date }}:{{ cur_time }}.gz"
       format: gz
