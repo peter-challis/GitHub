@@ -6,7 +6,7 @@
 
   vars:
     source: /root/auto/
-    destination: /root/auto/merged_installed.csv
+    destination: /root/merge/merged_installed.csv
 #    merge_filename_regex: "\\.csv"
 #    merge_filename_regex: "\\.(txt|csv)"
 #    merged_file_separator_text: ","
