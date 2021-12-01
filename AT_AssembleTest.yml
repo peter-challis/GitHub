@@ -12,6 +12,18 @@
 #    merged_file_separator_text: ","
 
   tasks:
+  - name: Create /root/merge/ if it does not exist
+    ansible.builtin.file:
+      path: /root/merge
+      state: directory
+      mode: '0755'
+
+  - name: Create /root/auto/ if it does not exist
+    ansible.builtin.file:
+      path: /root/auto
+      state: directory
+      mode: '0755'
+
   - name: Merge raw contents from all data filesystem
     assemble:
       src: "{{ source }}"
@@ -24,3 +36,20 @@
 #  - name: displaying merge_result var to screen
 #    debug:
 #      msg: "{{ merge_results }}"
+
+  - name: datestamp for archive file
+    shell: "date +%Y-%m-%d%H-%M-%S"
+    register: tstamp
+
+  - name: Set var for datestamp
+    set_fact:
+     cur_date: "{{ tstamp.stdout[0:10]}}"
+     cur_time: "{{ tstamp.stdout[10:]}}"
+
+  - name: Archive to gz file type all the files which matched {{in_pattern}} in {{in_path}}
+    archive:
+      path: "{{ item.path }}"
+      remove: True
+      dest: "/root/archive/PatchingReport-{{srv_out.stdout}}:{{ cur_date }}:{{ cur_time }}.gz"
+      format: gz
+    with_items: '{{ files_matched.files }}'
