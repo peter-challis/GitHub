@@ -6,7 +6,7 @@
 
   vars:
     source: /home/ansible/automation
-    destination: /home/merged_data/merged_installed.csv
+    destination: /home/ansible/merged_data/merged_installed.csv
 #    merge_filename_regex: "\\.csv"
 #    merge_filename_regex: "\\.(txt|csv)"
 #    merged_file_separator_text: ","
