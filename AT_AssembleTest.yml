@@ -5,22 +5,22 @@
   become_user: root
 
   vars:
-    source: /root/auto/
-    destination: /root/merge/merged_installed.csv
+    source: /home/ansible/automation
+    destination: /home/merged_data/merged_installed.csv
 #    merge_filename_regex: "\\.csv"
 #    merge_filename_regex: "\\.(txt|csv)"
 #    merged_file_separator_text: ","
 
   tasks:
-  - name: Create /root/merged_data/ if it does not exist
+  - name: Create /home/ansible/merged_data/ if it does not exist
     ansible.builtin.file:
-      path: /root/merged_data
+      path: /home/ansible/merged_data
       state: directory
       mode: '0755'
 
-  - name: Create /root/automation/ if it does not exist
+  - name: Create /home/ansible/automation/ if it does not exist
     ansible.builtin.file:
-      path: /root/automation
+      path: /home/ansible/automation
       state: directory
       mode: '0755'
 
@@ -48,6 +48,6 @@
 
   - name: Archive to gz file type
     archive:
-      path: /root/merged_data
-      dest: "/root/merged_data/PatchingReport-{{ cur_date }}:{{ cur_time }}.gz"
+      path: /home/ansible/merged_data
+      dest: "/home/automation/merged_data/PatchingReport-{{ cur_date }}:{{ cur_time }}.gz"
       format: gz
