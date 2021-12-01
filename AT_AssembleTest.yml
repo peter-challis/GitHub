@@ -7,9 +7,6 @@
   vars:
     source: /home/ansible/automation
     destination: /home/ansible/merged_data/merged_installed.csv
-#    merge_filename_regex: "\\.csv"
-#    merge_filename_regex: "\\.(txt|csv)"
-#    merged_file_separator_text: ","
 
   tasks:
   - name: Create /home/ansible/merged_data if it does not exist
@@ -28,14 +25,13 @@
     assemble:
       src: "{{ source }}"
       dest: "{{ destination }}"
-#      regexp: "{{ merge_filename_regex }}"
-#      validate: /root/auto/ -t -f %s
-#      delimiter: "{{ merged_file_separator_text }}"
-#    register: merge_results
 
-#  - name: displaying merge_result var to screen
-#    debug:
-#      msg: "{{ merge_results }}"
+  - copy:
+      src: /home/ansible/merged_data/merged_installed.csv
+      dest: /home/ansible/merged_data/All_Servers_Installed.csv
+      owner: foo
+      group: foo
+      mode: 0644
 
   - name: datestamp for archive file
     shell: "date +%Y-%m-%d%H-%M-%S"
