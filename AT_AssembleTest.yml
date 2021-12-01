@@ -21,17 +21,15 @@
       state: directory
       mode: '0755'
 
+  - name: Remove merged file
+    ansible.builtin.file:
+      path: /home/ansible/merged_data/merged_installed.csv
+      state: absent
+
   - name: Merge raw contents from all data filesystem
     assemble:
       src: "{{ source }}"
       dest: "{{ destination }}"
-
-  - copy:
-      src: /home/ansible/merged_data/merged_installed.csv
-      dest: /home/ansible/merged_data/All_Servers_Installed.csv
-      owner: foo
-      group: foo
-      mode: 0644
 
   - name: datestamp for archive file
     shell: "date +%Y-%m-%d%H-%M-%S"
