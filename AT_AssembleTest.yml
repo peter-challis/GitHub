@@ -23,7 +23,7 @@
 
   vars:
     source: /root/auto/
-    destination: /root/auto/
+    destination: /root/merge.csv
     merge_filename_regex: "\\.csv"
 #    merge_filename_regex: "\\.(txt|csv)"
     merged_file_separator_text: ","
@@ -33,10 +33,11 @@
     assemble:
       src: "{{ source }}"
       dest: "{{ destination }}"
-      regexp: "{{ merge_filename_regex }}"
-      validate: /root/auto/ -t -f %s
-      delimiter: "{{ merged_file_separator_text }}"
+#      regexp: "{{ merge_filename_regex }}"
+#      validate: /root/auto/ -t -f %s
+#      delimiter: "{{ merged_file_separator_text }}"
     register: merge_results
 
-  - debug:
+  - name: displaying merge_result var to screen
+    debug:
       msg: "Files merge and placed in {{ merge_results }}"
