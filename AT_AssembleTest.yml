@@ -23,4 +23,4 @@
 
   - name: displaying merge_result var to screen
     debug:
-      msg: "csv files merged & saved to /root/merge.csv n/n/ {{ merge_results }}"
+      msg: "csv files merged & saved to /root/merge.csv \n\n {{ merge_results }}"
