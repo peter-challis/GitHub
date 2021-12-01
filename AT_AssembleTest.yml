@@ -49,5 +49,5 @@
   - name: Archive to gz file type
     archive:
       path: /home/ansible/merged_data
-      dest: "/home/ansible/automation/merged_data/PatchingReport-{{ cur_date }}:{{ cur_time }}.gz"
+      dest: "/home/ansible/merged_data/PatchingReport-{{ cur_date }}:{{ cur_time }}.gz"
       format: gz
