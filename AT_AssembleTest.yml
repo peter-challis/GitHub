@@ -12,15 +12,15 @@
 #    merged_file_separator_text: ","
 
   tasks:
-  - name: Create /root/merge/ if it does not exist
+  - name: Create /root/merged_data/ if it does not exist
     ansible.builtin.file:
-      path: /root/merge
+      path: /root/merged_data
       state: directory
       mode: '0755'
 
-  - name: Create /root/auto/ if it does not exist
+  - name: Create /root/automation/ if it does not exist
     ansible.builtin.file:
-      path: /root/auto
+      path: /root/automation
       state: directory
       mode: '0755'
 
@@ -48,7 +48,6 @@
 
   - name: Archive to gz file type
     archive:
-      path: /root/auto
-#      remove: True
-      dest: "/root/merge/PatchingReport-{{ cur_date }}:{{ cur_time }}.gz"
+      path: /root/merged_data
+      dest: "/root/merged_data/PatchingReport-{{ cur_date }}:{{ cur_time }}.gz"
       format: gz
