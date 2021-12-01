@@ -19,8 +19,8 @@
 #      regexp: "{{ merge_filename_regex }}"
 #      validate: /root/auto/ -t -f %s
 #      delimiter: "{{ merged_file_separator_text }}"
-    register: merge_results
+#    register: merge_results
 
-  - name: displaying merge_result var to screen
-    debug:
-      msg: "{{ merge_results }}"
+#  - name: displaying merge_result var to screen
+#    debug:
+#      msg: "{{ merge_results }}"
