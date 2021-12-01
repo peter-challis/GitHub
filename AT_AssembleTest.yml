@@ -50,6 +50,6 @@
     archive:
       path: "{{ item.path }}"
       remove: True
-      dest: "/root/archive/PatchingReport-{{srv_out.stdout}}:{{ cur_date }}:{{ cur_time }}.gz"
+      dest: "/root/merge/PatchingReport-{{srv_out.stdout}}:{{ cur_date }}:{{ cur_time }}.gz"
       format: gz
     with_items: '{{ files_matched.files }}'
