@@ -24,8 +24,9 @@
   vars:
     source: /root/auto/
     destination: /root/auto/
-    merge_filename_regex: "\\.(txt|csv)"
-    merged_file_separator_text: ""
+    merge_filename_regex: "\\.csv"
+#    merge_filename_regex: "\\.(txt|csv)"
+    merged_file_separator_text: ","
 
   tasks:
   - name: Merge raw contents from all data filesystem
@@ -38,4 +39,4 @@
     register: merge_results
 
   - debug:
-      msg: " Files merge and placed in {{ destination }}"
+      msg: "Files merge and placed in {{ merge_results }}"
