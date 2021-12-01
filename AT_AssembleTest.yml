@@ -4,23 +4,6 @@
   become: yes
   become_user: root
 
-#  vars_prompt:
-#  - name: source
-#    prompt: Source
-#    private: no
-#
-#  - name: destination
-#    prompt: destination
-#    private: no
-#
-#  - name: merge_filename_regex
-#    prompt: merge_filename_regex
-#    private: no
-#
-#  - name: merged_file_separator_text
-#    prompt: merged_file_separator_text
-#    private: no
-
   vars:
     source: /root/auto/
     destination: /root/merge.csv
@@ -40,4 +23,4 @@
 
   - name: displaying merge_result var to screen
     debug:
-      msg: "Files merge and placed in {{ merge_results }}"
+      msg: "csv files merged & saved to /root/merge.csv /n/n {{ merge_results }}"
