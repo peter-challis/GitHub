@@ -49,6 +49,6 @@
   - name: Archive to gz file type
     archive:
       path: /root/auto
-      remove: True
-      dest: "/root/merge/PatchingReport-{{ cur_date }}:{{ cur_time }}.gz"
-      format: gz
+#      remove: True
+      dest: "/root/merge/PatchingReport-{{ cur_date }}:{{ cur_time }}.zip"
+      format: zip
