@@ -11,13 +11,19 @@
 
 # Create folder structure incase its disappears
   tasks:
-  - name: Create /home/ansible/merged_data if it does not exist
+  - name: destination for the AT copy of post patch report
+    ansible.builtin.file:
+      path: /home/ansible/report_zip
+      state: directory
+      mode: '0755'
+
+  - name: destination for the report and multiple zipped up reports
     ansible.builtin.file:
       path: /home/ansible/merged_data
       state: directory
       mode: '0755'
 
-  - name: Create /home/ansible/automation if it does not exist
+  - name: destination for the unzipped reports
     ansible.builtin.file:
       path: /home/ansible/automation
       state: directory
@@ -25,6 +31,11 @@
 
 # To be added shortly.  Post patching playbook will zip all endpoint reports
 # This playbook with unzip via gunzip *.gz
+  - name: Unarchive a file with extra options
+    ansible.builtin.unarchive:
+      src: /home/ansible/report_zip
+      dest: /home/ansible/automation
+
 
 # Remove previous merged report
   - name: Remove merged file
@@ -56,6 +67,7 @@
       dest: "/home/ansible/merged_data/PatchingReport-{{ cur_date }}:{{ cur_time }}.gz"
       format: gz
 
+# Various Housekeeping tasks to clean up the SFS box
 # QUESTION - How long do we want to keep the archived files for?
   - name: Housekeeping - Find archives older than 1 year
     find:
@@ -69,3 +81,8 @@
       path: "{{ item.path }}"
       state: absent
     with_items: "{{ filesOlderThan1Y.files }}"
+
+    - name: Housekeeping - Remove zip file copied from AT
+      ansible.builtin.file:
+        path: /home/ansible/report_zip/*.gz
+        state: absent
