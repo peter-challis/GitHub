@@ -69,20 +69,20 @@
 
 # Various Housekeeping tasks to clean up the SFS box
 # How long do we want to keep the archived files for?
-  - name: Housekeeping - Find archives older than 1 year
+  - name: Housekeeping  Find archives older than 1 year
     find:
       paths: /home/ansible/merged_data
       age: 56w
       recurse: yes
     register: filesOlderThan1Y
 
-  - name: Housekeeping - Remove archives older than 1 year
+  - name: Housekeeping  Remove archives older than 1 year
     file:
       path: "{{ item.path }}"
       state: absent
     with_items: "{{ filesOlderThan1Y.files }}"
 
-    - name: Housekeeping - Remove zip file copied from AT
+    - name: Housekeeping  Remove zip file copied from AT
       ansible.builtin.file:
         path: /home/ansible/report_zip/*.gz
         state: absent
