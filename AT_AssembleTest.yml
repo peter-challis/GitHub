@@ -1,3 +1,4 @@
+# Playbook create late 2021 for patching project
 ---
 - hosts: node1
   gather_facts: false
@@ -8,7 +9,7 @@
     source: /home/ansible/automation
     destination: /home/ansible/merged_data/windows_patch_info.csv
 
-# Create folder structure
+# Create folder structure incase its disappears
   tasks:
   - name: Create /home/ansible/merged_data if it does not exist
     ansible.builtin.file:
@@ -22,19 +23,23 @@
       state: directory
       mode: '0755'
 
-# Unzip post AT copy
-#gunzip *.gz
+# To be added shortly.  Post patching playbook will zip all endpoint reports
+# This playbook with unzip via gunzip *.gz
 
+# Remove previous merged report
   - name: Remove merged file
     ansible.builtin.file:
       path: /home/ansible/merged_data/windows_patch_info.csv
       state: absent
 
+# Merge all endpoint reports into one csv
   - name: Merge raw contents from all data filesystem
     assemble:
       src: "{{ source }}"
       dest: "{{ destination }}"
 
+# Below datestamp code will be replaced with simple version when running from toweradmin
+# simple code will not run via Ansible in a Box
   - name: datestamp for archive file
     shell: "date +%Y-%m-%d%H-%M-%S"
     register: tstamp
@@ -44,13 +49,14 @@
      cur_date: "{{ tstamp.stdout[0:10]}}"
      cur_time: "{{ tstamp.stdout[10:]}}"
 
+# Archive and datestamp merged file
   - name: Archive to gz file type
     archive:
       path: /home/ansible/merged_data
       dest: "/home/ansible/merged_data/PatchingReport-{{ cur_date }}:{{ cur_time }}.gz"
       format: gz
 
-# How long do we want to keep the archived files for?
+# QUESTION - How long do we want to keep the archived files for?
   - name: Housekeeping - Find archives older than 1 year
     find:
       paths: /home/ansible/merged_data
