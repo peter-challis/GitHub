@@ -23,7 +23,7 @@
       mode: '0755'
 
 # Unzip post AT copy
-gunzip *.gz
+#gunzip *.gz
 
   - name: Remove merged file
     ansible.builtin.file:
