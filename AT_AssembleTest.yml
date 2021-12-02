@@ -76,13 +76,13 @@
       recurse: yes
     register: filesOlderThan1Y
 
-  - name: Housekeeping  Remove archives older than 1 year
+  - name: Housekeeping - Remove archives older than 1 year
     file:
       path: "{{ item.path }}"
       state: absent
     with_items: "{{ filesOlderThan1Y.files }}"
 
-    - name: Housekeeping  Remove zip file copied from AT
-      ansible.builtin.file:
-        path: /home/ansible/report_zip/*.gz
-        state: absent
+  - name: Housekeeping - Remove zip file copied from AT
+    ansible.builtin.file:
+      path: /home/ansible/report_zip/*.gz
+      state: absent
