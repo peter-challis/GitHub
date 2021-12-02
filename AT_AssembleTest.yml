@@ -68,7 +68,7 @@
       format: gz
 
 # Various Housekeeping tasks to clean up the SFS box
-# QUESTION - How long do we want to keep the archived files for?
+# How long do we want to keep the archived files for?
   - name: Housekeeping - Find archives older than 1 year
     find:
       paths: /home/ansible/merged_data
