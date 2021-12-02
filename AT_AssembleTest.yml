@@ -6,8 +6,9 @@
 
   vars:
     source: /home/ansible/automation
-    destination: /home/ansible/merged_data/merged_installed.csv
+    destination: /home/ansible/merged_data/windows_patch_info.csv
 
+# Create folder structure
   tasks:
   - name: Create /home/ansible/merged_data if it does not exist
     ansible.builtin.file:
@@ -21,9 +22,12 @@
       state: directory
       mode: '0755'
 
+# Unzip post AT copy
+gunzip *.gz
+
   - name: Remove merged file
     ansible.builtin.file:
-      path: /home/ansible/merged_data/merged_installed.csv
+      path: /home/ansible/merged_data/windows_patch_info.csv
       state: absent
 
   - name: Merge raw contents from all data filesystem
@@ -46,15 +50,16 @@
       dest: "/home/ansible/merged_data/PatchingReport-{{ cur_date }}:{{ cur_time }}.gz"
       format: gz
 
-  - name: Housekeeping - find all files that are older than 10 days
+# How long do we want to keep the archived files for?
+  - name: Housekeeping - Find archives older than 1 year
     find:
       paths: /home/ansible/merged_data
-      age: 10d
+      age: 56w
       recurse: yes
-    register: filesOlderThan10
+    register: filesOlderThan1Y
 
-  - name: Housekeeping - remove older than 10
+  - name: Housekeeping - Remove archives older than 1 year
     file:
       path: "{{ item.path }}"
       state: absent
-    with_items: "{{ filesOlderThan10.files }}"
+    with_items: "{{ filesOlderThan1Y.files }}"

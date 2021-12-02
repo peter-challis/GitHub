@@ -1,8 +1,0 @@
-Device,Server_IP,Operating_System,Status,FixNumber,InstallDate,Title
-WIN-1D3KJCL01N5,192.168.1.249,Microsoft Windows Server 2016 Standard Evaluation,Installed,KB3192137,2016-09-12 00:00:00 ,Update
-WIN-1D3KJCL01N5,192.168.1.249,Microsoft Windows Server 2016 Standard Evaluation,Installed,KB3211320,2017-01-07 00:00:00 ,Update
-WIN-1D3KJCL01N5,192.168.1.249,Microsoft Windows Server 2016 Standard Evaluation,Installed,KB5001078,2021-03-14 10:20:59 ,Security Update
-WIN-1D3KJCL01N5,192.168.1.249,Microsoft Windows Server 2016 Standard Evaluation,Installed,KB5005698,2021-09-20 09:27:56 ,Security Update
-WIN-1D3KJCL01N5,192.168.1.249,Microsoft Windows Server 2016 Standard Evaluation,Installed,KB4103723,2021-03-14 10:18:03 ,Security Update
-WIN-1D3KJCL01N5,192.168.1.249,Microsoft Windows Server 2016 Standard Evaluation,Installed,KB2267602,2021-10-29 09:52:44 ,Security Intelligence Update for Microsoft Defender Antivirus - KB2267602 (Version 1.353.29.0)
-WIN-1D3KJCL01N5,192.168.1.249,Microsoft Windows Server 2016 Standard Evaluation,Installed,KB890830,2021-10-14 12:38:09 ,Windows Malicious Software Removal Tool x64 - v5.94 (KB890830)
