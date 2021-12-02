@@ -49,10 +49,10 @@
      cur_date: "{{ tstamp.stdout[0:10]}}"
      cur_time: "{{ tstamp.stdout[10:]}}"
 
-# Archive and datestamp merged file
+# Archive and datestamp windows_patch_info.csv
   - name: Archive to gz file type
     archive:
-      path: /home/ansible/merged_data
+      path: /home/ansible/merged_data/windows_patch_info.csv
       dest: "/home/ansible/merged_data/PatchingReport-{{ cur_date }}:{{ cur_time }}.gz"
       format: gz
 
