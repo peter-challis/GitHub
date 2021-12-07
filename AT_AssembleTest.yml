@@ -38,7 +38,16 @@
       dest: /home/ansible/automation
       remote_src: yes
       mode: '0777'
-#
+
+# Post patching playbook will zip all endpoint reports
+  - name: Unarchive a file with extra options
+    unarchive:
+#     src: https://example.com/example.zip
+      src: /home/ansible/automation/PatchingReport-2021-12-01:15-30-26.gz
+      remote_src: yes
+      dest: /home/ansible/automation
+      remote_src: yes
+      mode: '0777'
 
 # Remove previous merged report
   - name: Remove merged file
