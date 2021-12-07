@@ -33,7 +33,7 @@
   - name: Unarchive a file with extra options
     unarchive:
 #     src: https://example.com/example.zip
-      src: /home/ansible/report_zip/PatchingReport-*.gz
+      src: /home/ansible/report_zip/*.gz
       remote_src: yes
       dest: /home/ansible/report_zip
       remote_src: yes
@@ -86,6 +86,6 @@
     with_items: "{{ filesOlderThan1Y.files }}"
 
   - name: Housekeeping - Remove zip file copied from AT
-    ansible.builtin.file:
+    file:
       path: /home/ansible/report_zip/*.gz
       state: absent
