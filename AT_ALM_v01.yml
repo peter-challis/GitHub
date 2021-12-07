@@ -13,7 +13,8 @@
   - name: Copy files from Windows to AT
     fetch:
       src: "{{ source_path }}"
-      dest: "{{ at_path }}"
+#      dest: "{{ at_path }}"
+      dest: "{{ dest_path }}"
       flat: yes
       validate_checksum: no
     register: file_copy
