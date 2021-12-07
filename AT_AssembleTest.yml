@@ -15,19 +15,19 @@
     ansible.builtin.file:
       path: /home/ansible/report_zip
       state: directory
-      mode: '0755'
+      mode: '0777'
 
   - name: destination for the report and multiple zipped up reports
     ansible.builtin.file:
       path: /home/ansible/merged_data
       state: directory
-      mode: '0755'
+      mode: '0777'
 
   - name: destination for the unzipped reports
     ansible.builtin.file:
       path: /home/ansible/automation
       state: directory
-      mode: '0755'
+      mode: '0777'
 
 # Post patching playbook will zip all endpoint reports
   - name: Unarchive a file with extra options
