@@ -39,13 +39,13 @@
       remote_src: yes
       mode: '0777'
 
-# Non-permy 
+# Non-permy
   - name: Unarchive a file with extra options
     unarchive:
 #     src: https://example.com/example.zip
       src: /home/ansible/report_zip/PatchingReport-2021-12-01:15-30-26.gz
       remote_src: yes
-      dest: /home/ansible/automation
+      dest: /home/ansible/report_zip
       remote_src: yes
       mode: '0777'
 
