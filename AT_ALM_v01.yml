@@ -22,14 +22,14 @@
     fetch:
       src: "{{ at_path }}"
       dest: "{{ dest_path }}"
-      flat: yes
-      validate_checksum: no
+#      flat: yes
+#      validate_checksum: no
     register: file_copy
 
-  - name:
-    fail:
-      msg: " Files copied to {{ dest_path }} "
-    when: file_copy.failed == true
+#  - name:
+#    fail:
+#      msg: " Files copied to {{ dest_path }} "
+#    when: file_copy.failed == true
 
 # Housekeeping - If files have copied delete old files
 # if file_copy.failed == true then rm etc
