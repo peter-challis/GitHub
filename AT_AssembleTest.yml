@@ -29,21 +29,11 @@
       state: directory
       mode: '0777'
 
-# Post patching playbook will zip all endpoint reports
+# Post patching playbook will zip all endpoint reports - test for the prod version
   - name: Unarchive a file with extra options
     unarchive:
 #     src: https://example.com/example.zip
-      src: /home/ansible/report_zip/PatchingReport-2021-12-01:15-30-26.gz
-      remote_src: yes
-      dest: /home/ansible/automation
-      remote_src: yes
-      mode: '0777'
-
-# Non-permy
-  - name: Unarchive a file with extra options
-    unarchive:
-#     src: https://example.com/example.zip
-      src: /home/ansible/report_zip/PatchingReport-2021-12-01:15-30-26.gz
+      src: /home/ansible/report_zip/PatchingReport-*.gz
       remote_src: yes
       dest: /home/ansible/report_zip
       remote_src: yes
