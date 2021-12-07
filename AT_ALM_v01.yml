@@ -4,9 +4,9 @@
 
 # can be amended via 'prompt on launch'
   vars:
-  - source_path: \\<server>\ALMQCSYNC
-  - at_path: "{{hostvars['localhost']['base_dir']}}"
-  - dest_path: \\global.lloydstsb.com\File\SMSQualityCenter\Shared
+  - source_path:
+  - at_path:
+  - dest_path:
 
   tasks:
 # Copying ALM log files from all 11 windows boxes to a group share
