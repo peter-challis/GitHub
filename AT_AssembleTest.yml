@@ -29,10 +29,11 @@
       state: directory
       mode: '0755'
 
-# To be added shortly.  Post patching playbook will zip all endpoint reports
+# Post patching playbook will zip all endpoint reports
   - name: Unarchive a file with extra options
-    ansible.builtin.unarchive:
-      src: /home/ansible/report_zip/atcopy.tar.gz
+    unarchive:
+#     src: https://example.com/example.zip
+      src: /home/ansible/report_zip/Patch*.gz
       dest: /home/ansible/automation
 
 # Remove previous merged report
