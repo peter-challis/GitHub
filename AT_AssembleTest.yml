@@ -33,8 +33,9 @@
   - name: Unarchive a file with extra options
     unarchive:
 #     src: https://example.com/example.zip
-      src: /home/ansible/report_zip/PatchingReport-2021-12-01:15-30-26.gz
-      dest: /home/ansible/automation
+      src: "/home/ansible/report_zip/PatchingReport-*.gz"
+      dest: "/home/ansible/automation"
+#     remote_src: yes
 
 # Remove previous merged report
   - name: Remove merged file
