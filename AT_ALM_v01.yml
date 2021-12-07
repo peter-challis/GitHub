@@ -1,0 +1,29 @@
+---
+- hosts: all
+  gather_facts: false
+
+# can be amended via 'prompt on launch'
+  vars:
+  - source_path: \\<server>\ALMQCSYNC
+  - at_path: "{{hostvars['localhost']['base_dir']}}"
+  - dest_path: \\global.lloydstsb.com\File\SMSQualityCenter\Shared
+
+  tasks:
+# Copying ALM log files from all 11 windows boxes to a group share
+    - name: Copy files from Windows to AT
+      fetch:
+        src: "{{ source_path }}"
+        dest: "{{ at_path }}"
+        flat: yes
+        validate_checksum: no
+      register: file_copy
+
+    - name: Copy files from AT to share
+      fetch:
+        src: "{{ at_path }}"
+        dest: "{{ dest_path }}"
+        flat: yes
+        validate_checksum: no
+      register: file_copy
+
+# Housekeeping - If files have copied delete old files
