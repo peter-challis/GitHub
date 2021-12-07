@@ -14,17 +14,17 @@
     fetch:
       src: "{{ source_path }}"
       dest: "{{ at_path }}"
-#      flat: yes
-#      validate_checksum: no
+      flat: yes
+      validate_checksum: no
     register: file_copy
 
-  - name: Copy files from AT to share
-    fetch:
-      src: "{{ at_path }}"
-      dest: "{{ dest_path }}"
+#  - name: Copy files from AT to share
+#    fetch:
+#      src: "{{ at_path }}"
+#      dest: "{{ dest_path }}"
 #      flat: yes
 #      validate_checksum: no
-    register: file_copy
+#    register: file_copy
 
 #  - name:
 #    fail:
