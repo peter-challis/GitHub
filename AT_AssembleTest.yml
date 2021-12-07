@@ -30,11 +30,12 @@
       mode: '0777'
 
 # Post patching playbook will zip all endpoint reports
-  - name: Unarchive a file with extra options
-    unarchive:
+#  - name: Unarchive a file with extra options
+#    unarchive:
 #     src: https://example.com/example.zip
-      src: "/home/ansible/report_zip/PatchingReport-2021-12-01:15-30-26.gz"
-      dest: "/home/ansible/automation"
+#      src: "/home/ansible/report_zip/PatchingReport-2021-12-01:15-30-26.gz"
+#      dest: "/home/ansible/automation"
+#      mode: '0777'
 #     remote_src: yes
 
 # Remove previous merged report
@@ -66,6 +67,7 @@
       path: /home/ansible/merged_data/windows_patch_info.csv
       dest: "/home/ansible/merged_data/PatchingReport-{{ cur_date }}:{{ cur_time }}.gz"
       format: gz
+      mode: '0777'
 
 # Various Housekeeping tasks to clean up the SFS box
 # How long do we want to keep the archived files for?
