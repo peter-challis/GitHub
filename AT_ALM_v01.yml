@@ -14,9 +14,10 @@
     fetch:
       src: "{{ source_path }}"
       dest: "{{ at_path }}"
+      remote_src: yes
 #      dest: "{{ dest_path }}"
-      flat: yes
-      ignore_errors: yes
+#      flat: yes
+#      ignore_errors: yes
 #      validate_checksum: no
     register: file_copy
 
