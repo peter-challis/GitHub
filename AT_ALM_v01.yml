@@ -1,5 +1,5 @@
 ---
-- hosts: winhost, localhost
+- hosts: winhost
   gather_facts: true
 
 # can be amended via 'prompt on launch'
@@ -11,6 +11,7 @@
   - name: Copy files from Win to AT
     fetch:
       src: "{{ source_path }}"
+      remote_src: yes
       dest: "{{ dest_path }}"
       flat: yes
       validate_checksum: no
