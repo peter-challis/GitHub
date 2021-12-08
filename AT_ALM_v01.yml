@@ -3,15 +3,15 @@
   gather_facts: true
 
 # can be amended via 'prompt on launch'
-#  vars:
-#  - source_path:
-#  - dest_path:
+  vars:
+  - source_path:
+  - dest_path:
 
   tasks:
   - name: Copy files from Win to AT
     fetch:
-#      src: "{{ source_path }}"
-      src: \\ALM\Copy.txt
-#      dest: "{{ dest_path }}"
-      dest: /home/
-#      remote_src: yes
+      src: "{{ source_path }}"
+      dest: "{{ dest_path }}"
+      flat: yes
+      validate_checksum: no
+    register: file_copy
