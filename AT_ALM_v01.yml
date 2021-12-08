@@ -33,7 +33,7 @@
 
   - name: Display to screen
     fail:
-      msg: " Files copied to {{ dest_path }} "
+      msg: " file_copy "
     when: file_copy.failed == true
 
 # Housekeeping - If files have copied delete old files
