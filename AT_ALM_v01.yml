@@ -27,10 +27,10 @@
   - name: Copy files from Win to AT
     fetch:
 #      src: "{{ at_path }}"
-      src: c:\ALM\Copy.txt
-      remote_src: yes
+      src: \\192.168.56.210\ALM\Copy.txt
+#      remote_src: yes
 #      dest: "{{ dest_path }}"
-      dest: /home/
+      dest: /localhost/home/
 #      flat: yes
 #      validate_checksum: no
 #    register: file_copy
