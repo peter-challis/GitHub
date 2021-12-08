@@ -28,7 +28,7 @@
     fetch:
 #      src: "{{ at_path }}"
       src: c:\ALM\Copy.txt
-      remote_src: yes
+#      remote_src: yes
 #      dest: "{{ dest_path }}"
       dest: /home/
 #      flat: yes
