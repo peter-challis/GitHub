@@ -3,42 +3,16 @@
   gather_facts: true
 
 # can be amended via 'prompt on launch'
-  vars:
-  - source_path:
-  - at_path:
-  - dest_path:
+#  vars:
+#  - source_path:
+#  - at_path:
+#  - dest_path:
 
   tasks:
-# Copying ALM log files from all 11 windows boxes to a group share
-#  - name: Copy files from Windows to AT
-#    fetch:
-#      src: "{{ source_path }}"
-#      src: /home/test.txt
-
-#      dest: "{{ at_path }}"
-#      dest: C:\CP
-#      remote_src: yes
-#      dest: "{{ dest_path }}"
-#      flat: yes
-#      ignore_errors: yes
-#      validate_checksum: no
-#    register: file_copy
-
   - name: Copy files from Win to AT
     fetch:
 #      src: "{{ at_path }}"
       src: \\192.168.56.210\ALM\Copy.txt
-#      remote_src: yes
 #      dest: "{{ dest_path }}"
       dest: /localhost/home/
-#      flat: yes
-#      validate_checksum: no
-#    register: file_copy
-
-#  - name: Display to screen
-#    debug:
-#      msg: " file_copy "
-#    when: file_copy.failed == true
-
-# Housekeeping - If files have copied delete old files
-# if file_copy.failed == true then rm etc
+      remote_src: yes
