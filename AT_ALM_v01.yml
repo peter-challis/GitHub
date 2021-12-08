@@ -31,10 +31,10 @@
 #      validate_checksum: no
 #    register: file_copy
 
-#  - name:
-#    fail:
-#      msg: " Files copied to {{ dest_path }} "
-#    when: file_copy.failed == true
+  - name: Display to screen
+    fail:
+      msg: " Files copied to {{ dest_path }} "
+    when: file_copy.failed == true
 
 # Housekeeping - If files have copied delete old files
 # if file_copy.failed == true then rm etc
