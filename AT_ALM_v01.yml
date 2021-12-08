@@ -1,6 +1,6 @@
 ---
 - hosts: winhost, localhost
-  gather_facts: false
+  gather_facts: true
 
 # can be amended via 'prompt on launch'
   vars:
@@ -24,7 +24,7 @@
 #      validate_checksum: no
 #    register: file_copy
 
-  - name: Copy files from AT to share
+  - name: Copy files from Win to AT
     fetch:
 #      src: "{{ at_path }}"
       src: c:\ALM\Copy.txt
