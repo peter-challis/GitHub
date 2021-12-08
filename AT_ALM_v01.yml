@@ -12,10 +12,10 @@
 # Copying ALM log files from all 11 windows boxes to a group share
   - name: Copy files from Windows to AT
     fetch:
-#      src: "{{ source_path }}"
-      src: C:/ALM/Copy.txt
-#      dest: "{{ at_path }}"
-      dest: /root/
+      src: "{{ source_path }}"
+#      src: C:/ALM/Copy.txt
+      dest: "{{ at_path }}"
+#      dest: /root/
       remote_src: yes
 #      dest: "{{ dest_path }}"
 #      flat: yes
@@ -32,9 +32,9 @@
 #    register: file_copy
 
   - name: Display to screen
-    fail:
+    debug:
       msg: " file_copy "
-    when: file_copy.failed == true
+#    when: file_copy.failed == true
 
 # Housekeeping - If files have copied delete old files
 # if file_copy.failed == true then rm etc
