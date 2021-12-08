@@ -1,11 +1,12 @@
 ---
 - hosts: winhost
   gather_facts: true
+# New creds created for windows and linux
 
 # can be amended via 'prompt on launch'
   vars:
-  - source_path: C:\ALM
-  - dest_path: /home
+  - source_path: C:\ALM\Copy.txt
+  - dest_path: /home/toweradmin/
 
   tasks:
   - name: Copy files from Win to AT
