@@ -16,24 +16,24 @@
 #      src: C:/ALM/Copy.txt
       dest: "{{ at_path }}"
 #      dest: /root/
-      remote_src: yes
+#      remote_src: yes
 #      dest: "{{ dest_path }}"
 #      flat: yes
 #      ignore_errors: yes
 #      validate_checksum: no
-    register: file_copy
+#    register: file_copy
 
 #  - name: Copy files from AT to share
-#    fetch:
-#      src: "{{ at_path }}"
-#      dest: "{{ dest_path }}"
+    fetch:
+      src: "{{ at_path }}"
+      dest: "{{ dest_path }}"
 #      flat: yes
 #      validate_checksum: no
 #    register: file_copy
 
-  - name: Display to screen
-    debug:
-      msg: " file_copy "
+#  - name: Display to screen
+#    debug:
+#      msg: " file_copy "
 #    when: file_copy.failed == true
 
 # Housekeeping - If files have copied delete old files
