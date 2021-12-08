@@ -5,14 +5,13 @@
 # can be amended via 'prompt on launch'
 #  vars:
 #  - source_path:
-#  - at_path:
 #  - dest_path:
 
   tasks:
   - name: Copy files from Win to AT
     fetch:
-#      src: "{{ at_path }}"
-      src: C:/ALM/Copy.txt
+#      src: "{{ source_path }}"
+      src: \\ALM\Copy.txt
 #      dest: "{{ dest_path }}"
-      dest: /home/
+#      dest: /home/
       remote_src: yes
