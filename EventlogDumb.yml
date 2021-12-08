@@ -1,5 +1,5 @@
 ---
-- hosts: winhost, winclone
+- hosts: winhost
   gather_facts: false
   tasks:
    - name: Write an entry to a Windows event log
