@@ -16,7 +16,8 @@
       dest: "{{ at_path }}"
 #      dest: "{{ dest_path }}"
       flat: yes
-      validate_checksum: no
+      ignore_errors: yes
+#      validate_checksum: no
     register: file_copy
 
 #  - name: Copy files from AT to share
