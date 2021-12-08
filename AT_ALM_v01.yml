@@ -1,5 +1,5 @@
 ---
-- hosts: winhost, node1
+- hosts: winhost, localhost
   gather_facts: false
 
 # can be amended via 'prompt on launch'
