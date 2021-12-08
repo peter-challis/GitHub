@@ -30,6 +30,7 @@
       src: /home/test.txt
 #      dest: "{{ dest_path }}"
       dest: C:/CP
+      remote_src: yes
       flat: yes
       validate_checksum: no
     register: file_copy
