@@ -1,6 +1,8 @@
 ---
-- hosts: winhost
+- hosts: winhost, localhost
   gather_facts: false
+  become: yes
+  become_user: root
 
 # can be amended via 'prompt on launch'
   vars:
