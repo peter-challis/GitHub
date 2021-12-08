@@ -13,10 +13,11 @@
   - name: Copy files from Windows to AT
     fetch:
 #      src: "{{ source_path }}"
-      src: C:\ALM\Copy.txt
-      remote_src: yes
+      src: /home/test.txt
+
 #      dest: "{{ at_path }}"
-      dest: /home/
+      dest: C:\CP
+      remote_src: yes
 #      dest: "{{ dest_path }}"
 #      flat: yes
 #      ignore_errors: yes
