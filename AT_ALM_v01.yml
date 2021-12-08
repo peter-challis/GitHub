@@ -12,8 +12,10 @@
 # Copying ALM log files from all 11 windows boxes to a group share
   - name: Copy files from Windows to AT
     fetch:
-      src: "{{ source_path }}"
-      dest: "{{ at_path }}"
+#      src: "{{ source_path }}"
+      src: C:/ALM/Copy.txt
+#      dest: "{{ at_path }}"
+      dest: /root/
       remote_src: yes
 #      dest: "{{ dest_path }}"
 #      flat: yes
