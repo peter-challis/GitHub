@@ -13,18 +13,18 @@
   - name: Copy files from Windows to AT
     fetch:
 #      src: "{{ source_path }}"
-      src: C:/ALM/Copy.txt
-#      dest: "{{ at_path }}"
-      dest: C:/CP
+      src: C:\ALM\Copy.txt
       remote_src: yes
+#      dest: "{{ at_path }}"
+      dest: /home/
 #      dest: "{{ dest_path }}"
 #      flat: yes
 #      ignore_errors: yes
 #      validate_checksum: no
 #    register: file_copy
 
-  - name: Copy files from AT to share
-    fetch:
+#  - name: Copy files from AT to share
+#    fetch:
 #      src: "{{ at_path }}"
 #      src: /root
 #      dest: "{{ dest_path }}"
