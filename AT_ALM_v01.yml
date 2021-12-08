@@ -4,8 +4,8 @@
 
 # can be amended via 'prompt on launch'
   vars:
-  - source_path:
-  - dest_path:
+  - source_path: C:\ALM\copy.txt
+  - dest_path: /home/
 
   tasks:
   - name: Copy files from Win to AT
