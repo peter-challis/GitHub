@@ -29,13 +29,13 @@
   - name: Copy files from AT to share
     fetch:
 #      src: "{{ at_path }}"
-      src: /home/test.txt
+      src: c:/ALM/Copy.txt
       remote_src: yes
 #      dest: "{{ dest_path }}"
-      dest: C:/CP
-      flat: yes
-      validate_checksum: no
-    register: file_copy
+      dest: /home/
+#      flat: yes
+#      validate_checksum: no
+#    register: file_copy
 
 #  - name: Display to screen
 #    debug:
