@@ -12,7 +12,7 @@
   - name: Copy files from Win to AT
     fetch:
 #      src: "{{ at_path }}"
-      src: C:\ALM\Copy.txt
+      src: C:/ALM/Copy.txt
 #      dest: "{{ dest_path }}"
-      dest: /localhost/home/
+      dest: /home/
       remote_src: yes
