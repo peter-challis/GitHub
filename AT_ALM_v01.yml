@@ -16,7 +16,7 @@
       src: C:/ALM/Copy.txt
 #      dest: "{{ at_path }}"
       dest: C:/CP
-#      remote_src: yes
+      remote_src: yes
 #      dest: "{{ dest_path }}"
 #      flat: yes
 #      ignore_errors: yes
