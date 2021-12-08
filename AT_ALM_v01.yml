@@ -13,5 +13,5 @@
 #      src: "{{ source_path }}"
       src: \\ALM\Copy.txt
 #      dest: "{{ dest_path }}"
-#      dest: /home/
-      remote_src: yes
+      dest: /home/
+#      remote_src: yes
