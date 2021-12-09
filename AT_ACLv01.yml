@@ -2,12 +2,12 @@
 - hosts: winhost
   gather_facts: true
 
-- name: Restrict write and execute access to User Fed-Phil
-  ansible.windows.win_acl:
-    user: toweradmin
-    path: C:\ACLtest
-    type: deny
-    rights: ExecuteFile,Write
+  - name: Restrict write and execute access to User Fed-Phil
+    ansible.windows.win_acl:
+      user: toweradmin
+      path: C:\ACLtest
+      type: deny
+      rights: ExecuteFile,Write
 
 #  - name: Enable and remove dedicated ACE's
 #    win_acl_inheritance:
