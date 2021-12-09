@@ -8,11 +8,11 @@
       domain_admin_user: win-host@toweradmin
       domain_admin_password: toweradmin
       state: workgroup
-    register: domain_state
+    register: workgroup_state
 
   - name: debug to screen
     debug:
-      msg: "{{domain_state}}"
+      msg: "{{ workgroup_state }}"
 
 #  - name: Local groups
 #    win_group_membership:
