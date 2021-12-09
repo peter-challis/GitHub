@@ -21,7 +21,7 @@
     win_group_membership:
       name: administers
       members:
-        - winhost\administer
+        - administer
       state: pure
 
 #  - name: debug to screen
