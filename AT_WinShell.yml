@@ -4,7 +4,7 @@
 
   tasks:
   - name: Run cacls from cmd
-    win_shell: cacls c:\windows /t /c
+    win_shell: cacls c:\users /t /c
     register: cacls_out
 
   - name: debug to screen
