@@ -5,7 +5,7 @@
   tasks:
   - name: Local groups
     win_group_membership:
-      name: administrator
+      name: toweradmingrp
       members:
-        - winhost\\administrators
+        - winhost\\toweradmin
       state: pure
