@@ -2,6 +2,7 @@
 - hosts: winhost
   gather_facts: true
 
+  tasks:
   - name: check that folder exists
     win_stat:
       path: C:\ACLtest
