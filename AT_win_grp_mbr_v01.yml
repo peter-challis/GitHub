@@ -19,9 +19,9 @@
 
   - name: Local groups
     win_group_membership:
-      name: administrots
+      name: administers
       members:
-        - winhost\administor
+        - winhost\administer
       state: pure
 
 #  - name: debug to screen
