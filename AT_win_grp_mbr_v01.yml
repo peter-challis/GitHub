@@ -3,9 +3,16 @@
   gather_facts: true
 
   tasks:
-  - name: Local groups
-    win_group_membership:
-      name: toweradmingrp
-      members:
-        - winhost\\toweradmin
-      state: pure
+  - win_domain_membership:
+      workgroup_name: win-host
+      domain_admin_user: win-host@toweradmin
+      domain_admin_password: toweradmin
+      state: workgroup
+    register: domain_state
+
+#  - name: Local groups
+#    win_group_membership:
+#      name: toweradmingrp
+#      members:
+#        - winhost\\toweradmin
+#      state: pure
