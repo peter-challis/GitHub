@@ -1,0 +1,11 @@
+---
+- hosts: winhost
+  gather_facts: true
+
+  tasks:
+  - name: Local groups
+    win_group_membership:
+      name: administrator
+      members:
+        - winhost\\administrators
+      state: pure
