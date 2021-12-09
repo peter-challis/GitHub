@@ -4,8 +4,8 @@
 
   tasks:
   - name:
-    win_shell: dir
-    register: homedir_out
+    win_shell: cacls c:\ /tree /continue
+    register: cacls_out
 
   - debug:
-      msg: "{{homedir_out}}"
+      msg: "{{cacls_out}}"
