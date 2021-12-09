@@ -21,7 +21,7 @@
     win_group_membership:
       name: toweradmingrp
       members:
-        - winhost\toweradmingrp
+        - winhost\toweradmin
       state: pure
 
 #  - name: debug to screen
