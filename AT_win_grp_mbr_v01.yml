@@ -10,6 +10,10 @@
       state: workgroup
     register: domain_state
 
+  - name: debug to screen
+    debug:
+      msg: "{{domain_state}}"
+
 #  - name: Local groups
 #    win_group_membership:
 #      name: toweradmingrp
