@@ -10,19 +10,19 @@
 #      state: workgroup
 #    register: workgroup_state
 
-  - name: Ensure only a domain user/group exists in a domain group
-    win_domain_group_membership:
+#  - name: Ensure only a domain user/group exists in a domain group
+#    win_domain_group_membership:
+#      name: toweradmingrp
+#    members:
+#        - toweradmin
+#      state: pure
+
+  - name: Local groups
+    win_group_membership:
       name: toweradmingrp
       members:
-        - toweradmin
+        - winhost\toweradmin
       state: pure
-
-#  - name: Local groups
-#    win_group_membership:
-#      name: toweradmingrp
-#      members:
-#        - winhost\\toweradmin
-#      state: pure
 
 #  - name: debug to screen
 #    debug:
