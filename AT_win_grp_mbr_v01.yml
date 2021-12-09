@@ -19,9 +19,9 @@
 
   - name: Local groups
     win_group_membership:
-      name: toweradmingrp
+      name: toweradmin
       members:
-        - winhost\toweradmin
+        - winhost\toweradmingrp
       state: pure
 
 #  - name: debug to screen
