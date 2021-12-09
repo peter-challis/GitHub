@@ -21,7 +21,7 @@
     win_group_membership:
       name: Administrators
       members:
-        - Administrator
+        - win-host\Administrator
       state: pure
 
 #  - name: debug to screen
