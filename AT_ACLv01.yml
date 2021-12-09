@@ -18,7 +18,7 @@
   - name: Add write right for authenticated users
     win_acl:
       path: C:\ACLtest
-      user: ThisMachine\Utilisateurs
+      user: ThisMachine\toweradmin
       rights: Write
       type: allow
       state: present
