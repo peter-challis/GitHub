@@ -7,5 +7,5 @@
     win_shell: dir
     register: homedir_out
 
-    - debug:
-      msg: "{{homedir_out}}"
+  - debug:
+    msg: "{{homedir_out}}"
