@@ -3,16 +3,19 @@
   gather_facts: true
 
   tasks:
-  - win_domain_membership:
-      workgroup_name: win-host
-      domain_admin_user: win-host@toweradmin
-      domain_admin_password: toweradmin
-      state: workgroup
-    register: workgroup_state
+#  - win_domain_membership:
+#      workgroup_name: win-host
+#      domain_admin_user: win-host@toweradmin
+#      domain_admin_password: toweradmin
+#      state: workgroup
+#    register: workgroup_state
 
-  - name: debug to screen
-    debug:
-      msg: "{{ workgroup_state }}"
+  - name: Ensure only a domain user/group exists in a domain group
+    win_domain_group_membership:
+      name: toweradmingrp
+      members:
+        - toweradmin
+      state: pure
 
 #  - name: Local groups
 #    win_group_membership:
@@ -20,3 +23,7 @@
 #      members:
 #        - winhost\\toweradmin
 #      state: pure
+
+#  - name: debug to screen
+#    debug:
+#      msg: "{{ workgroup_state }}"

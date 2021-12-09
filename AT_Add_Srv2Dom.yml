@@ -1,0 +1,11 @@
+---
+- hosts: winhost
+  gather_facts: true
+
+  tasks:
+  - name: Add a computer to a domain group
+    win_domain_group_membership:
+      name: Foo
+      members:
+        - DESKTOP$
+      state: present
