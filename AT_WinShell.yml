@@ -3,10 +3,13 @@
   gather_facts: true
 
   tasks:
-  - name: Run cacls from cmd
-    win_shell: cacls c:\automation /t /c
-    register: cacls_out
+- name: Execute Powershell from Ansible
+  win_shell: (Get-Acl -Path "C:\automation") | Format-list
 
-  - name: debug to screen
-    debug:
-      msg: "{{ cacls_out }}"
+#  - name: Run cacls from cmd
+#    win_shell: cacls c:\automation /t /c
+#    register: cacls_out
+#
+#  - name: debug to screen
+#    debug:
+#      msg: "{{ cacls_out }}"
