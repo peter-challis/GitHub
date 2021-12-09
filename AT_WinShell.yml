@@ -3,6 +3,6 @@
   gather_facts: true
 
   tasks:
-  - name: Execute a command in the remote shell, stdout goes to the specified file on the remote
-    ansible.windows.win_shell: dir
+  - name:
+    win_shell: dir
     register: homedir_out
