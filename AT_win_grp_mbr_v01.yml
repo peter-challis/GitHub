@@ -19,9 +19,9 @@
 
   - name: Local groups
     win_group_membership:
-      name: administers
+      name: Administrators
       members:
-        - administer
+        - Administrator
       state: pure
 
 #  - name: debug to screen
