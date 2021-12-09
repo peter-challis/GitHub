@@ -3,9 +3,10 @@
   gather_facts: true
 
   tasks:
-  - name:
-    win_shell: cacls c:\ /tree /continue
+  - name: Run cacls from cmd
+    win_shell: cacls c:\windows /t /c
     register: cacls_out
 
+  - name: debug cacls to screen
   - debug:
       msg: "{{cacls_out}}"
