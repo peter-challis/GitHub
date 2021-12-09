@@ -2,12 +2,36 @@
 - hosts: winhost
   gather_facts: true
 
-  - name: Restrict write and execute access to User Fed-Phil
-    ansible.windows.win_acl:
-      user: toweradmin
+  - name: check that folder exists
+    win_stat:
       path: C:\ACLtest
-      type: deny
-      rights: ExecuteFile,Write
+    register: folderPresent
+
+  - name: cut ACL inheritance and copy existing ones
+    win_acl_inheritance:
+      path: C:\ACLtest
+      state: absent
+      reorganize: yes
+    when: folderPresent.stat.exists
+
+  - name: Add write right for authenticated users
+    win_acl:
+      path: C:\ACLtest
+      user: ThisMachine\Utilisateurs
+      rights: Write
+      type: allow
+      state: present
+      inherit: ContainerInherit, ObjectInherit
+      propagation: 'InheritOnly'
+    when: folderPresent.stat.exists
+
+
+#  - name: Restrict write and execute access to User Fed-Phil
+#    ansible.windows.win_acl:
+#      user: toweradmin
+#      path: C:\ACLtest
+#      type: allow
+#      rights: ExecuteFile,Write
 
 #  - name: Enable and remove dedicated ACE's
 #    win_acl_inheritance:
