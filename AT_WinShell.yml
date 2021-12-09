@@ -4,7 +4,7 @@
 
   tasks:
   - name: Execute Powershell from Ansible
-    win_shell: (Get-Acl -Path "C:\automation") | Format-list
+    win_shell: get-childitem "C:\" -recurse | get-acl | Format-List
 
 #  - name: Run cacls from cmd
 #    win_shell: cacls c:\automation /t /c
