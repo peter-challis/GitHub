@@ -26,20 +26,6 @@
       propagation: 'InheritOnly'
     when: folderPresent.stat.exists
 
-
-#  - name: Restrict write and execute access to User Fed-Phil
-#    ansible.windows.win_acl:
-#      user: toweradmin
-#      path: C:\ACLtest
-#      type: allow
-#      rights: ExecuteFile,Write
-
-#  - name: Enable and remove dedicated ACE's
-#    win_acl_inheritance:
-#      path: C:\ACLtest
-#      state: present
-#      reorganize: True
-
 #  - name: Non-Win :: Obtain the ACL for a specific file
 #    acl:
 #      path: C:\ACLtest
