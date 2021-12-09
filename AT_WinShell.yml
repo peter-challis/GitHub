@@ -7,5 +7,6 @@
     win_shell: cacls c:\windows /t /c
     register: cacls_out
 
-  - debug: debug cacls to screen
-      msg: "{{cacls_out}}"
+  - name: debug to screen
+    debug:
+      msg: "{{ cacls_out }}"
