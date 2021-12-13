@@ -17,8 +17,8 @@
 
   - name: Print files
     debug:
-      msg: "{{ item }}"
-    with_items: '{{ files_matched }}'
+      msg: "{{ item.path }}"
+    with_items: "{{ files_matched.files }}"
 
 #  - name: Jump2 - Copy files from AT to Win
 #    fetch:
