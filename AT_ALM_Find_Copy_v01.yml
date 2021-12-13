@@ -2,6 +2,7 @@
 - hosts: localhost
   gather_facts: true
 
+  tasks:
   - name: Recursively find ALM files
     find:
       paths: /var/lib/docker/
