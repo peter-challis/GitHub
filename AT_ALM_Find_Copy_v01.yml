@@ -1,19 +1,21 @@
 ---
 - hosts: localhost
   gather_facts: true
+  become: yes
+  become_user: root
 
   tasks:
   - name: Recursively find ALM files
     find:
       paths: /var/lib/docker/
-      patterns: ALM*.txt
+      patterns: *.txt
 #      age: 1000000m
       recurse: yes
 #      file_type: file
 #      excludes: 'nginx,mysql'
     register: files_matched
 
-  - debug:
+  - debug: Print matched files to screen
       msg: "{{ item.path }}"
     with_items: '{{ files_matched.files }}'
 
