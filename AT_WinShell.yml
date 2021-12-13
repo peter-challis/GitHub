@@ -6,8 +6,8 @@
   - name: Posh module
     ansible.windows.win_powershell:
       script: Get-LocalGroupMember -Group "Administrators"
-      register: posh_output
-        
+    register: posh_output
+
   - name: debug to screen
     debug:
       msg: "{{ posh_output }}"
