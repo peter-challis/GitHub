@@ -25,12 +25,14 @@
 #      src: /var/lib/docker/overlay2/*LMCopy.txt
 #      dest: /home/ALM
 
-  - name: Recursively find /tmp files older than 2 days
+  - name: Recursively find ALM files
     find:
-      paths: var/lib/docker/overlay2
+      paths: /var/lib/docker/
       patterns: '*.txt,*.alm.*'
-      age: 10m
+      age: 1000000m
       recurse: yes
+#      file_type: file
+#      excludes: 'nginx,mysql'
     register: files_matched
 
   - debug:
