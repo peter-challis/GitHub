@@ -3,14 +3,19 @@
   gather_facts: true
 
   tasks:
-  - name: Posh module
+  - name: Run basic PowerShell script
     ansible.windows.win_powershell:
-      script: Get-LocalGroupMember -Group "Administrators"
-    register: posh_output
+      script: |
+        echo "Hello World"
 
-  - name: debug to screen
-    debug:
-      msg: "{{ posh_output }}"
+#  - name: Posh module
+#    ansible.windows.win_powershell:
+#      script: Get-LocalGroupMember -Group "Administrators"
+#    register: posh_output
+
+#  - name: debug to screen
+#    debug:
+#      msg: "{{ posh_output }}"
 
 #  - name: Execute Powershell from Ansible
 #    win_shell: get-childitem C:\ -recurse | get-acl | Format-table | Out-File "c:\ACLoutput.txt"
