@@ -20,23 +20,28 @@
 #    register: file_copy
 
 # /var/lib/docker/overlay2/1b836df67ce867bee8d656c3cb71d21f48874c92f92c0be694f25bcea5cada23/merged/localhost/home/winhost/C:/ALM/Copy.txt
-  - name: AT move
-    ansible.builtin.copy:
-      src: /var/lib/docker/overlay2/*LMCopy.txt
-      dest: /home/ALM
+#  - name: AT move
+#    ansible.builtin.copy:
+#      src: /var/lib/docker/overlay2/*LMCopy.txt
+#      dest: /home/ALM
 
-#- name: Recursively find /tmp files older than 2 days
-#  find:
-#    paths: var/lib/docker/overlay2
-#    patterns: '*.txt,*.alm.*'
-#    age: 10m
-#    recurse: yes
+  - name: Recursively find /tmp files older than 2 days
+    find:
+      paths: var/lib/docker/overlay2
+      patterns: '*.txt,*.alm.*'
+      age: 10m
+      recurse: yes
+    register: files_matched
 
-  - name: Jump2 - Copy files from AT to Win
-    fetch:
-      src: /home/ALM
-      remote_src: yes
-      dest: "{{ jump2_dest }}"
-      flat: yes
-      validate_checksum: no
+  - debug:
+      msg: "{{ item.path }}"
+    with_items: '{{ files_matched.files }}'
+
+#  - name: Jump2 - Copy files from AT to Win
+#    fetch:
+#      src: /home/ALM
+#      remote_src: yes
+#      dest: "{{ jump2_dest }}"
+#      flat: yes
+#      validate_checksum: no
 #    register: file_copy
