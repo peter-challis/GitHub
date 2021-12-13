@@ -1,5 +1,5 @@
 ---
-- hosts: localhost, winhost
+- hosts: localhost
   gather_facts: true
   become: yes
   become_user: root
@@ -20,18 +20,8 @@
       msg: "{{ item.path }}"
     with_items: "{{ files_matched.files }}"
 
-  - name: Jump2 - Copy files from AT to Win
-    fetch:
-      src: /home/ALM
-      remote_src: yes
-      dest: "{{ jump2_dest }}"
-      flat: yes
-      validate_checksum: no
-    register: file_copy
-
-  - name: Jump2 - Copy files from AT to Win
-    fetch:
+  - name: copy files
+    ansible.builtin.copy:
       src: "{{ item.path }}"
-      dest: C:\ALM\destination
-      remote_src: yes
-    with_items: '{{ files_matched.files }}'
+      dest: /home/ALM
+    with_items: "{{ files_matched.files }}"

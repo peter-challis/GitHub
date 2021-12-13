@@ -1,0 +1,14 @@
+---
+- hosts: winhost
+  gather_facts: true
+# New creds created for windows and linux
+
+  tasks:
+  - name: Jump1 - Copy files from AT to Win
+    fetch:
+      src: /home/ALM
+      dest: C:\ALM\destination
+      remote_src: yes
+      flat: yes
+      validate_checksum: no
+#    register: file_copy
