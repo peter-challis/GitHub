@@ -15,9 +15,9 @@
 #      excludes: 'nginx,mysql'
     register: files_matched
 
-  - debug: Print matched files to screen
-      msg: "{{ item.path }}"
-    with_items: '{{ files_matched.files }}'
+#  - debug: Print matched files to screen
+#      msg: "{{ item.path }}"
+#    with_items: '{{ files_matched.files }}'
 
 #  - name: Jump2 - Copy files from AT to Win
 #    fetch:
