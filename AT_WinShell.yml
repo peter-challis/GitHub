@@ -3,8 +3,18 @@
   gather_facts: true
 
   tasks:
-  - name: Posh get local groups
-    win_shell: Get-LocalGroupMember -Group "Administrators"
+  - name: Posh module
+    ansible.windows.win_powershell:
+      script: Get-LocalGroupMember -Group "Administrators"
+      register: posh_output
+        
+  - name: debug to screen
+    debug:
+      msg: "{{ posh_output }}"
+
+
+#  - name: Posh get local groups
+#    win_shell: Get-LocalGroupMember -Group "Administrators" |
 
 #  - name: Execute Powershell from Ansible
 #    win_shell: get-childitem C:\ -recurse | get-acl | Format-table | Out-File "c:\ACLoutput.txt"
@@ -13,7 +23,3 @@
 #  - name: Run cacls from cmd
 #    win_shell: cacls c:\automation /t /c
 #    register: cacls_out
-#
-#  - name: debug to screen
-#    debug:
-#      msg: "{{ cacls_out }}"
