@@ -23,10 +23,10 @@
 # find / -name Copy.txt
 # /var/lib/docker/overlay2/1b836df67ce867bee8d656c3cb71d21f48874c92f92c0be694f25bcea5cada23/merged/localhost/home/winhost/C:/ALM/Copy.txt
 
-- name:
-  ansible.builtin.copy:
-    src: //var/lib/docker/overlay2/*LMCopy.txt
-    dest: /home/ALM
+  - name:
+    ansible.builtin.copy:
+      src: //var/lib/docker/overlay2/*LMCopy.txt
+      dest: /home/ALM
 
   - name: Jump2 - Copy files from AT to Win
     fetch:
