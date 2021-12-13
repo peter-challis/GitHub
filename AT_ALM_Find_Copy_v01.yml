@@ -7,8 +7,8 @@
   tasks:
   - name: Recursively find ALM files
     find:
-      paths: /var/lib/docker/
-      patterns: "*.txt"
+      paths: /var/lib/docker/overlay2/
+      patterns: "ALM*.txt"
 #      age: 1000000m
       recurse: yes
 #      file_type: file
