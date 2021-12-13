@@ -12,10 +12,6 @@
     debug:
       msg: "{{ posh_output }}"
 
-
-#  - name: Posh get local groups
-#    win_shell: Get-LocalGroupMember -Group "Administrators" |
-
 #  - name: Execute Powershell from Ansible
 #    win_shell: get-childitem C:\ -recurse | get-acl | Format-table | Out-File "c:\ACLoutput.txt"
 # get-childitem "C:\windows\temp" -recurse | get-acl | Format-List | Out-File "c:\temp\output.txt"
