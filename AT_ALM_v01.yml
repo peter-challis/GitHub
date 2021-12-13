@@ -25,19 +25,19 @@
 #      src: /var/lib/docker/overlay2/*LMCopy.txt
 #      dest: /home/ALM
 
-  - name: Recursively find ALM files
-    find:
-      paths: /var/lib/docker/
-      patterns: '*.txt,*.alm.*'
-      age: 1000000m
-      recurse: yes
+#  - name: Recursively find ALM files
+#    find:
+#      paths: /var/lib/docker/
+#      patterns: '*.txt,*.alm.*'
+#      age: 1000000m
+#      recurse: yes
 #      file_type: file
 #      excludes: 'nginx,mysql'
-    register: files_matched
+#    register: files_matched
 
-  - debug:
-      msg: "{{ item.path }}"
-    with_items: '{{ files_matched.files }}'
+#  - debug:
+#      msg: "{{ item.path }}"
+#    with_items: '{{ files_matched.files }}'
 
 #  - name: Jump2 - Copy files from AT to Win
 #    fetch:
