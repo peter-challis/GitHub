@@ -21,7 +21,8 @@
     with_items: "{{ files_matched.files }}"
 
   - name: copy files
-    ansible.builtin.copy:
+    copy:
       src: "{{ item.path }}"
       dest: /home/ALM
+      mode: 777
     with_items: "{{ files_matched.files }}"
