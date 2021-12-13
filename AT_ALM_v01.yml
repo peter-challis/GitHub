@@ -5,7 +5,7 @@
 
 # can be amended via 'prompt on launch'
   vars:
-  - source_path: C:\ALM\Copy.txt
+  - source_path: C:\ALM\Source\ALMCopy.txt
   - dest_path: /home/toweradmin/
 
   tasks:
