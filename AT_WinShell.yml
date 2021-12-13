@@ -3,10 +3,15 @@
   gather_facts: true
 
   tasks:
-  - name: Run basic PowerShell script
-    ansible.windows.win_powershell:
-      script: |
-        echo "Hello World"
+  - name: Add a PowerShell module
+    win_psmodule:
+      name: PowerShellModule
+      state: present
+
+#  - name: Run basic PowerShell script
+#    ansible.windows.win_powershell:
+#      script: |
+#        echo "Hello World"
 
 #  - name: Posh module
 #    ansible.windows.win_powershell:
