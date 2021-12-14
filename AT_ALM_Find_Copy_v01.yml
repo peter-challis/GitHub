@@ -34,9 +34,9 @@
     debug:
       msg: "{{ item.path }}"
     with_items: '{{ files.files }}'
-    
-#  - name: copy files
-#    copy:
-#      src: "{{item.path}}"
-#      dest: /home/ALM
-#    with_items: "{{files.files}}"
+
+  - name: copy files
+    copy:
+      src: "{{item.path}}"
+      dest: /home/ALM
+    with_items: "{{files.files}}"
