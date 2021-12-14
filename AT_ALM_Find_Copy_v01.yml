@@ -32,7 +32,7 @@
 
   - name: Print files
     debug:
-      msg: "{{ files.path }}"
+      msg: "{{ item.path }}"
 
 #  - name: copy files
 #    copy:
