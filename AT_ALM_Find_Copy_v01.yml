@@ -5,24 +5,32 @@
   become_user: root
 
   tasks:
-  - name: Recursively find ALM files
-    find:
-      paths: /var/lib/docker/overlay2/
-      patterns: "ALM*.txt"
+#  - name: Recursively find ALM files
+#    find:
+#      paths: /var/lib/docker/overlay2/
+#      patterns: "ALM*.txt"
 #      age: 1000000m
-      recurse: yes
+#      recurse: yes
 #      file_type: file
 #      excludes: 'nginx,mysql'
-    register: files_matched
+#    register: files_matched
 
-  - name: Print files
-    debug:
-      msg: "{{ item.path }}"
-    with_items: "{{ files_matched.files }}"
+#  - name: Print files
+#    debug:
+#      msg: "{{ item.path }}"
+#    with_items: "{{ files_matched.files }}"
 
-  - name: copy files
+  - name: recurse path
+    find:
+      path: /var/lib/docker/overlay2
+      recurse: yes
+#      patterns: "wrapper.txt,SaServerLog_*.html,QcLog_*.html"
+      patterns: "wrapper.txt"
+      file_type: file
+      age: 10m
+    register: files
+
+  - name: copy files to tmp
     copy:
-      src: "{{ item.path }}"
+      src: ~/{{files}}
       dest: /home/ALM
-      mode: 777
-    with_items: "{{ files_matched.files }}"
