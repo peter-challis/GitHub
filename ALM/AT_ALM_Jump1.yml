@@ -1,49 +1,16 @@
 ---
 - hosts: winhost
   gather_facts: true
-# New creds created for windows and linux
-# can be amended via 'prompt on launch'
+
   vars:
   - jump1_source: C:\ALM\Source\ALMCopy.txt
   - jump1_dest: /home/toweradmin/
-#  - jump2_source: //var/lib/docker/overlay2/*
-#  - jump2_dest: C:\ALM\destination
 
   tasks:
   - name: Jump1 - Copy files from Win to AT
     fetch:
+      dest: "{{ jump1_dest }}"
       src: "{{ jump1_source }}"
       remote_src: yes
-      dest: "{{ jump1_dest }}"
       flat: yes
       validate_checksum: no
-#    register: file_copy
-
-# /var/lib/docker/overlay2/1b836df67ce867bee8d656c3cb71d21f48874c92f92c0be694f25bcea5cada23/merged/localhost/home/winhost/C:/ALM/Copy.txt
-#  - name: AT move
-#    ansible.builtin.copy:
-#      src: /var/lib/docker/overlay2/*LMCopy.txt
-#      dest: /home/ALM
-
-#  - name: Recursively find ALM files
-#    find:
-#      paths: /var/lib/docker/
-#      patterns: '*.txt,*.alm.*'
-#      age: 1000000m
-#      recurse: yes
-#      file_type: file
-#      excludes: 'nginx,mysql'
-#    register: files_matched
-
-#  - debug:
-#      msg: "{{ item.path }}"
-#    with_items: '{{ files_matched.files }}'
-
-#  - name: Jump2 - Copy files from AT to Win
-#    fetch:
-#      src: /home/ALM
-#      remote_src: yes
-#      dest: "{{ jump2_dest }}"
-#      flat: yes
-#      validate_checksum: no
-#    register: file_copy

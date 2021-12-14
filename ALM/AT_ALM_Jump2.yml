@@ -1,7 +1,6 @@
 ---
 - hosts: winhost
   gather_facts: true
-# New creds created for windows and linux
 
   vars:
   - jump2_source: /home/ALM
