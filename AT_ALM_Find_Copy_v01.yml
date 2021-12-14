@@ -34,8 +34,8 @@
     archive:
       path: "{{ item.path }}"
 #      remove: True
-      dest: /home/ALM/archive.gz
-      format: gz
+      dest: /home/ALM/archive.zip
+      format: zip
     with_items: '{{ files.files }}'
 
 #  - name: copy files
