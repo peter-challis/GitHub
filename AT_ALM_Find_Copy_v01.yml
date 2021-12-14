@@ -30,7 +30,11 @@
       age: 10m
     register: files
 
-  - name: copy files to tmp
+  - name: Print files
+    debug:
+      msg: "{{ files }}"
+
+  - name: copy files
     copy:
-      src: ~/{{files}}
+      src: "{{files}}"
       dest: /home/ALM
