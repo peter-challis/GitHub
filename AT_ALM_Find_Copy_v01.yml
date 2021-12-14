@@ -15,11 +15,6 @@
 #      excludes: 'nginx,mysql'
 #    register: files_matched
 
-#  - name: Print files
-#    debug:
-#      msg: "{{ item.path }}"
-#    with_items: "{{ files_matched.files }}"
-
   - name: recurse path
     find:
       path: /var/lib/docker/overlay2
@@ -30,14 +25,21 @@
 #      age: 10m
     register: files
 
-  - name: Print files
+  - name: Print var
     debug:
       msg: "{{ item.path }}"
     with_items: '{{ files.files }}'
 
-  - name: copy files
-    copy:
-      src: "{{ item.path }}"
-#      remove: True
-      dest: "/home/ALM/"
-    with_items: "{{ files.files }}"
+  - name: Archive to zip
+    archive:
+      path: "{{ item.path }}"
+      remove: True
+      dest: /home/ALM
+      format: zip
+    with_items: '{{ files.files }}'
+
+#  - name: copy files
+#    copy:
+#      src: "{{ item.path }}"
+#      dest: /home/ALM
+#    with_items: "{{ files.files }}"
