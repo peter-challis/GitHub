@@ -32,10 +32,10 @@
 
   - name: Print files
     debug:
-      msg: "{{ item.path }}"
+      msg: "{{ files.path }}"
 
-  - name: copy files
-    copy:
-      src: "{{item.path}}"
-      dest: /home/ALM
-    with_items: "{{files.files}}"
+#  - name: copy files
+#    copy:
+#      src: "{{item.path}}"
+#      dest: /home/ALM
+#    with_items: "{{files.files}}"
