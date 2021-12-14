@@ -11,7 +11,7 @@
   - name: Jump1 - Copy files from Win to AT
     fetch:
       src: "{{ jump2_source }}"
-      remote_src: yes
       dest: "{{ jump2_dest }}"
+      remote_src: yes
       flat: yes
       validate_checksum: no
