@@ -26,7 +26,7 @@
       recurse: yes
 #      patterns: "wrapper.txt,SaServerLog_*.html,QcLog_*.html"
       patterns: "wrapper.txt"
-#      file_type: file
+      file_type: file
 #      age: 10m
     register: files
 
@@ -37,7 +37,7 @@
 
   - name: copy files
     copy:
-      path: "{{item.path}}"
+      src: "{{ item.path }}"
 #      remove: True
-      dest: /home/ALM
-    with_items: "{{files.files}}"
+      dest: "/home/ALM/"
+    with_items: "{{ files.files }}"
