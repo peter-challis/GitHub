@@ -3,7 +3,7 @@
   gather_facts: true
 
   vars:
-  - jump2_source: /home/ALM
+  - jump2_source: /home/ALM/archive.zip
   - jump2_dest: C:\ALM\destination
 
   tasks:

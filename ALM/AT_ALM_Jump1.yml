@@ -9,8 +9,8 @@
   tasks:
   - name: Jump1 - Copy files from Win to AT
     fetch:
-      dest: "{{ jump1_dest }}"
       src: "{{ jump1_source }}"
       remote_src: yes
+      dest: "{{ jump1_dest }}"
       flat: yes
       validate_checksum: no
