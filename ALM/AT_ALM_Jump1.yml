@@ -7,7 +7,7 @@
   - jump1_source: C:\ALM\Source\ALMCopy.txt
   - jump1_dest: /home/toweradmin/
 #  - jump2_source: //var/lib/docker/overlay2/*
-  - jump2_dest: C:\ALM\destination
+#  - jump2_dest: C:\ALM\destination
 
   tasks:
   - name: Jump1 - Copy files from Win to AT

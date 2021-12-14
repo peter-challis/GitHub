@@ -3,12 +3,15 @@
   gather_facts: true
 # New creds created for windows and linux
 
+  vars:
+  - jump2_source: /home/ALM
+  - jump2_dest: C:\ALM\destination
+
   tasks:
-  - name: Jump2 - Copy files from AT to Win
+  - name: Jump1 - Copy files from Win to AT
     fetch:
-      src: /home/ALM
-      dest: C:\ALM\destination
+      src: "{{ jump2_source }}"
       remote_src: yes
+      dest: "{{ jump2_dest }}"
       flat: yes
       validate_checksum: no
-#    register: file_copy
