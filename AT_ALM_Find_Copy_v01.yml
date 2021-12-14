@@ -37,6 +37,7 @@
 
   - name: copy files
     copy:
-      src: "{{item.path}}"
+      path: "{{item.path}}"
+#      remove: True
       dest: /home/ALM
     with_items: "{{files.files}}"
