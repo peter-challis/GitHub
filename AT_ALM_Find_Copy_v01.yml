@@ -21,7 +21,7 @@
       recurse: yes
 #      patterns: "wrapper.txt,SaServerLog_*.html,QcLog_*.html"
       patterns: "wrapper.txt"
-      file_type: file
+#      file_type: file
 #      age: 10m
     register: files
 
@@ -33,9 +33,9 @@
   - name: Archive to zip
     archive:
       path: "{{ item.path }}"
-      remove: True
-      dest: /home/ALM
-      format: zip
+#      remove: True
+      dest: /home/ALM/archive.gz
+      format: gz
     with_items: '{{ files.files }}'
 
 #  - name: copy files
