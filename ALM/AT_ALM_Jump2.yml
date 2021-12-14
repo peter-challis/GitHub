@@ -4,7 +4,7 @@
 # New creds created for windows and linux
 
   tasks:
-  - name: Jump1 - Copy files from AT to Win
+  - name: Jump2 - Copy files from AT to Win
     fetch:
       src: /home/ALM
       dest: C:\ALM\destination
