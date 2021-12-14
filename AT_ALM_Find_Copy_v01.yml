@@ -26,8 +26,8 @@
       recurse: yes
 #      patterns: "wrapper.txt,SaServerLog_*.html,QcLog_*.html"
       patterns: "wrapper.txt"
-      file_type: file
-      age: 10m
+#      file_type: file
+#      age: 10m
     register: files
 
   - name: Print files
