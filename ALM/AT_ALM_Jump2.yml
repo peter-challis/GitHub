@@ -7,7 +7,7 @@
   - jump2_dest: C:\ALM\destination
 
   tasks:
-  - name: Jump1 - Copy files from Win to AT
+  - name: Jump2 - Copy files from AT to Win
     fetch:
       src: "{{ jump2_source }}"
       dest: "{{ jump2_dest }}"
