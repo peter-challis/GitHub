@@ -15,13 +15,13 @@
 #      flat: yes
 #      validate_checksum: no
 
-#  - name: win copy
-#    win_copy:
-#      dest: '\\EC2AMAZ-T130RGR\testshare\test123.txt'
-#      src: testvars.yml
-
   - name: Jump2 - Copy files from AT to Win
-    fetch:
+    win_copy:
+      dest: '\\WIN-1D3KJCLON5\ALM\destination'
       src: /home/ALM/archive.zip
-      dest: \\WIN-1D3KJCLON5\ALM\destination
-      flat: yes
+
+#  - name: Jump2 - Copy files from AT to Win
+#    fetch:
+#      src: /home/ALM/archive.zip
+#      dest: \\WIN-1D3KJCLON5\ALM\destination
+#      flat: yes
