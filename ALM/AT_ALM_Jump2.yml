@@ -18,4 +18,4 @@
   - name: Jump2 - Copy files from AT to Win
     win_copy:
       src: /home/ALM/archive.zip
-      dest: \\192.168.56.120\destination
+      dest: C:\ALM\destination
