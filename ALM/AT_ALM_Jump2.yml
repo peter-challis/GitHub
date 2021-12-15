@@ -7,10 +7,21 @@
   - jump2_dest: C:\ALM\destination
 
   tasks:
+#  - name: Jump2 - Copy files from AT to Win
+#    fetch:
+#      src: "{{ jump2_source }}"
+#      dest: "{{ jump2_dest }}"
+#      remote_src: yes
+#      flat: yes
+#      validate_checksum: no
+
+#  - name: win copy
+#    win_copy:
+#      dest: '\\EC2AMAZ-T130RGR\testshare\test123.txt'
+#      src: testvars.yml
+
   - name: Jump2 - Copy files from AT to Win
     fetch:
-      src: "{{ jump2_source }}"
-      dest: "{{ jump2_dest }}"
-      remote_src: yes
+      src: /home/ALM/archive.zip
+      dest: \\WIN-1D3KJCLON5\ALM\destination
       flat: yes
-      validate_checksum: no
