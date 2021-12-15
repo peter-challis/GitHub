@@ -1,5 +1,5 @@
 ---
-- hosts: winhost
+- hosts: localhost
   gather_facts: true
 
   vars:
@@ -18,10 +18,12 @@
   - name: Jump2 - Copy files from AT to Win
     win_copy:
       dest: '\\WIN-1D3KJCLON5\ALM\destination'
+      remote_src: yes
       src: /home/ALM/archive.zip
 
 #  - name: Jump2 - Copy files from AT to Win
 #    fetch:
 #      src: /home/ALM/archive.zip
 #      dest: \\WIN-1D3KJCLON5\ALM\destination
+#      remote_src: yes
 #      flat: yes
