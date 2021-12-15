@@ -2,9 +2,9 @@
 - hosts: winhost
   gather_facts: true
 
-  vars:
-  - jump2_source: /home/ALM/archive.zip
-  - jump2_dest: \\192.168.56.120\destination
+#  vars:
+#  - jump2_source: /home/ALM/archive.zip
+#  - jump2_dest: \\192.168.56.120\destination
 
   tasks:
 #  - name: Jump2 - Fetch files from AT to Win
@@ -15,7 +15,7 @@
 #      flat: yes
 #      validate_checksum: no
 
-  - name: Jump2 - Copy files from AT to Win
+  - name: Jump2 - win_copy files from AT to Win
     win_copy:
       src: /home/ALM/archive.zip
-      dest: C:\ALM\destination
+      dest: C:\ALM\destination\
