@@ -17,9 +17,9 @@
 
   - name: Jump2 - Copy files from AT to Win
     win_copy:
-      dest: '\\WIN-1D3KJCLON5\ALM\destination'
-      remote_src: yes
       src: /home/ALM/archive.zip
+      dest: \\WIN-1D3KJCLON5\ALM\destination
+      remote_src: yes
 
 #  - name: Jump2 - Copy files from AT to Win
 #    fetch:
