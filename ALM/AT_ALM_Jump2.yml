@@ -4,10 +4,10 @@
 
   vars:
   - jump2_source: /home/ALM/archive.zip
-  - jump2_dest: \\WIN-1D3KJCLON5\ALM\destination
+  - jump2_dest: \\192.168.56.120\destination
 
   tasks:
-  - name: Jump2 - Copy files from AT to Win
+  - name: Jump2 - Fetch files from AT to Win
     fetch:
       src: "{{ jump2_source }}"
       dest: "{{ jump2_dest }}"
