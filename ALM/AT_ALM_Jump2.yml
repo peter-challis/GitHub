@@ -17,5 +17,5 @@
 
   - name: Jump2 - win_copy files from AT to Win
     win_copy:
-      src: /home/ALM/archive.zip
+      src: /trans/archive.zip
       dest: C:\ALM\destination\
